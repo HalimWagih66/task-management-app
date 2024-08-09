@@ -63,7 +63,7 @@ class CustomTextFormField extends StatelessWidget {
           initialValue: initialValue,
 
           minLines: minLines,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(decorationThickness: 0),
+          style: textThemeApp.font13PrimaryRegular,
           decoration: InputDecoration(
             errorStyle: const TextStyle(
               color: Colors.red,
