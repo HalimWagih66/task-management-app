@@ -6,9 +6,10 @@ class UserQuestionAboutRegistration extends StatelessWidget {
   const UserQuestionAboutRegistration({super.key,
     required this.questionText,
     required this.actionText,
-    this.onPressed});
+    this.onPressed, this.colorText});
   final String questionText;
   final String actionText;
+  final Color? colorText;
   final void Function()? onPressed;
 
   @override
@@ -17,11 +18,11 @@ class UserQuestionAboutRegistration extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(questionText, style: textThemeApp.font13PrimaryRegular.copyWith(color: textThemeApp.secondPrimaryColor)),
+        Text(questionText, style: textThemeApp.font13PrimaryRegular.copyWith(color: colorText)),
         TextButton(
           style: TextButton.styleFrom(padding: EdgeInsets.zero),
           onPressed: onPressed,
-          child: Text(actionText, style: textThemeApp.font13PrimaryRegular.copyWith(fontWeight: FontWeight.w900,color: textThemeApp.secondPrimaryColor)),
+          child: Text(actionText, style: textThemeApp.font13PrimaryRegular.copyWith(fontWeight: FontWeight.w900,color: colorText)),
         )
       ],
     );

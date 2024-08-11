@@ -12,9 +12,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     var textThemeApp = Provider.of<SettingsProvider>(context).textThemeApp;
     return AppBar(
+      foregroundColor: Colors.transparent,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
       leading: IconButton(icon: Icon(leadingIconData,color: textThemeApp.primaryColor,), onPressed: onPressed),
-      backgroundColor: backgroundColor,
-      title: Text(title),
+      title: Text(title,style: textThemeApp.font17PrimaryMedium),
     );
   }
 

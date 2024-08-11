@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:task_management_app/features/sign_up/presentation/view/sign_up_view.dart';
+import 'package:task_management_app/features/auth/presentation/sign_up/presentation/view/sign_up_view.dart';
 import 'package:task_management_app/provider/settings_provider.dart';
 import '../../../../core/utils/widgets/buttons/animated_button.dart';
 import '../../../../core/utils/widgets/user_question_about_registration.dart';
@@ -42,7 +42,7 @@ class OnBoardingBody extends StatelessWidget {
             },
           ),
           const SizedBox(height: 20),
-          UserQuestionAboutRegistration(questionText: "Already have an account?",actionText: "Login",onPressed: () {},),
+          UserQuestionAboutRegistration(questionText: "Already have an account?",actionText: "Login",onPressed: () {},colorText: textThemeApp.secondPrimaryColor),
           const SizedBox(height: 20)
         ],
       ),

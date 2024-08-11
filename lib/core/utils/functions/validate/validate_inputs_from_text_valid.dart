@@ -22,7 +22,7 @@ class ValidateInputsFromTextValid{
   }
   static String? validateConfirmPasswordValid(
       {required String firstPassword, required String secondPassword}){
-    if (firstPassword == secondPassword) {
+    if (firstPassword != secondPassword) {
       return "password does not match";
     }
     return null;

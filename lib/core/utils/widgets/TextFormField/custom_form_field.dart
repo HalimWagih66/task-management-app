@@ -21,11 +21,9 @@ class CustomTextFormField extends StatelessWidget {
   final String? initialValue;
   final FunctionValidate? functionOnChanged;
   final TextInputAction? textInputAction;
-  final void Function(String?)? onSaved;
   const CustomTextFormField(
       {super.key,
         this.inputField,
-        this.onSaved,
       required this.functionValidate,
       this.obscureText = false,
       this.textInputType = TextInputType.text,
@@ -55,9 +53,6 @@ class CustomTextFormField extends StatelessWidget {
           obscureText: obscureText,
           controller: inputField,
           validator: functionValidate,
-          onSaved: onSaved??(newValue) {
-            onSaved!(newValue);
-          },
           maxLines: maxLines,
           onChanged: functionOnChanged,
           initialValue: initialValue,
