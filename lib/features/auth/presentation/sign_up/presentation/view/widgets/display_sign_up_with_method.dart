@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_management_app/provider/settings_provider.dart';
 
-class DisplaySignUpWithMethod extends StatelessWidget {
-  const DisplaySignUpWithMethod({
+class DisplayRegistrationBySocial extends StatelessWidget {
+  const DisplayRegistrationBySocial({
     super.key, required this.image, required this.text, this.colorText,
   });
   final String image;

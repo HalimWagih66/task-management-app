@@ -29,7 +29,7 @@ class DisplayRegistrationMethods extends StatelessWidget {
             child:  BlocConsumer<SignUpBloc,SignUpState>(
               listener: (BuildContext context, SignUpState state) {
                 if(state is SignUpWithEmailAndPasswordFailure){
-                  showMessageWithSnackPar(message: state.errorMessage, context: context,background: textStyleApp.primaryColor);
+                  showMessageWithSnackBar(message: state.errorMessage, context: context,background: textStyleApp.primaryColor);
                 }else if(state is SignUpWithEmailAndPasswordSuccess){
                   showMessageWithAwesomeDialog(message: "An email has been sent to your personal email. Go to your email immediately and activate your account.",title: "Success", dialogType: DialogType.success,context: context,okActionName: "Ok",btnOkOnPress: () {},);
                 }
@@ -51,17 +51,17 @@ class DisplayRegistrationMethods extends StatelessWidget {
             child: BlocConsumer<SignUpBloc,SignUpState>(
               listener: (context, state) {
                 if(state is SignUpWithGoogleFailure){
-                  showMessageWithSnackPar(message: state.errorMessage, context: context,background: textStyleApp.primaryColor);
+                  showMessageWithSnackBar(message: state.errorMessage, context: context,background: textStyleApp.primaryColor);
                 }
                 else if(state is SignUpWithGoogleSuccess){
-                  showMessageWithSnackPar(message: "You have successfully registered using Google.", context: context,background: textStyleApp.primaryColor);
+                  showMessageWithSnackBar(message: "You have successfully registered using Google.", context: context,background: textStyleApp.primaryColor);
                 }
               },
                 builder: (context, state) {
                   if(state is SignUpWithGoogleLoading){
                     return CustomHexagonDotsLoading(color: textStyleApp.primaryColor);
                   }else{
-                    return DisplaySignUpWithMethod(text: titleButtonGoogle, image: 'assets/images/auth/google-logo.png',colorText: textStyleApp.primaryColor,);
+                    return DisplayRegistrationBySocial(text: titleButtonGoogle, image: 'assets/images/auth/google-logo.png',colorText: textStyleApp.primaryColor,);
                   }
                 },
             )

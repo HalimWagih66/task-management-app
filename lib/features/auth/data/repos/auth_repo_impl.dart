@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:task_management_app/core/errors/exceptions.dart';
 import 'package:task_management_app/core/errors/failures.dart';
 import 'package:task_management_app/core/models/user_model.dart';
@@ -50,5 +51,17 @@ class AuthRepoImpl implements AuthRepo {
       return left(ServerFailure("Something went wrong. Please try again later."));
     }
 
+  }
+
+  @override
+  Future<Either<Failure, User>> loginWithEmail({required String emailAddress, required String password}) async{
+    try {
+      var user = await firebaseAuthServices.loginWithEmail(emailAddress: emailAddress, password: password);
+      return right(user);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure("Something went wrong, please try again."));
+    }
   }
 }
