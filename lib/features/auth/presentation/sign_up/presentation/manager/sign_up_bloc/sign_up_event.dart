@@ -2,11 +2,6 @@ part of 'sign_up_bloc.dart';
 
 sealed class SignUpEvent {}
 
-class CreateAccountWithEmailAndPassword extends SignUpEvent{
-  late UserModel userModel;
-  CreateAccountWithEmailAndPassword(){
-    userModel = UserModel();
-  }
-}
+class SignUpWithEmailAndPassword extends SignUpEvent{}
 
-class CreateAccountWithGoogle extends SignUpEvent{}
+class SignUpWithGoogle extends SignUpEvent{}

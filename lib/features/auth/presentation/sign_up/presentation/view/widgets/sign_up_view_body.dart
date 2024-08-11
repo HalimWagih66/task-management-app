@@ -45,7 +45,7 @@ class SignUpViewBody extends StatelessWidget {
                     BlocProvider.of<ImagePickerCubit>(context).checkPickedImageNullOrNo();
                     if(formKey.currentState!.validate()){
                       if(BlocProvider.of<ImagePickerCubit>(context).pickedImage != null){
-                        BlocProvider.of<SignUpBloc>(context).add(CreateAccountWithEmailAndPassword());
+                        BlocProvider.of<SignUpBloc>(context).add(SignUpWithEmailAndPassword());
                       }
                     }
                   },

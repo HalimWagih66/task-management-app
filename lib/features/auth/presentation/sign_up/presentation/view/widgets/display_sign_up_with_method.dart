@@ -15,7 +15,7 @@ class DisplaySignUpWithMethod extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(image,height: 22,color: colorText),
+        Image.asset(image,height: 22),
         const SizedBox(width: 5),
         Text(text,style: textStyleApp.font17PrimaryMedium.copyWith(color: colorText)),
       ],

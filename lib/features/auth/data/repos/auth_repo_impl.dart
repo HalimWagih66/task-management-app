@@ -29,4 +29,26 @@ class AuthRepoImpl implements AuthRepo {
       return left(ServerFailure("Something went wrong, please try again."));
     }
   }
+
+  @override
+  Future<Either<Failure, UserModel>> createUserWithGoogle()async {
+    try {
+      var user = await firebaseAuthServices.signInWithGoogle();
+      if(user != null){
+        UserModel userModel = UserModel(
+            name: user.displayName,
+            id: user.uid,
+            email: user.email,
+            imageUrl: user.photoURL
+        );
+        await databaseServices.createUser(userJson: userModel.toJson(), collectionName: "users");
+        return right(userModel);
+      }else{
+        return left(UserFailure("Registration is not complete."));
+      }
+    } on Exception{
+      return left(ServerFailure("Something went wrong. Please try again later."));
+    }
+
+  }
 }

@@ -60,4 +60,5 @@ class FirebaseDataBase implements DatabaseServices{
        throw CustomException(errorMessage: e.toString());
      }
    }
+
 }

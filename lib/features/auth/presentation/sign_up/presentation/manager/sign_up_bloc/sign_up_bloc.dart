@@ -13,16 +13,29 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc({required this.authRepo}) : super(SignUpInitial()) {
     userModel = UserModel();
     on<SignUpEvent>((event, emit) async {
-      if(event is CreateAccountWithEmailAndPassword){
-        emit(SignUpLoading());
+      if(event is SignUpWithEmailAndPassword){
+        emit(SignUpWithEmailAndPasswordLoading());
         var result = await authRepo.createUserWithEmailAndPassword(userModel: userModel, file: pickedImage!, password: password!);
         result.fold((failure) {
-          emit(SignUpFailure(failure.message));
+          emit(SignUpWithEmailAndPasswordFailure(failure.message));
         }, (userModel) {
-          emit(SignUpSuccess());
+          emit(SignUpWithEmailAndPasswordSuccess());
           this.userModel = userModel;
         },);
       }
-    });
+
+
+
+      else if(event is SignUpWithGoogle){
+        emit(SignUpWithGoogleLoading());
+        var result = await authRepo.createUserWithGoogle();
+        result.fold((failure) {
+          emit(SignUpWithEmailAndPasswordFailure(failure.message));
+        }, (userModel) {
+          emit(SignUpWithGoogleSuccess());
+        },);
+      }
+    }
+    );
   }
 }
