@@ -8,7 +8,7 @@ import 'package:task_management_app/core/utils/widgets/loading/custom_hexagon_Do
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/sign_up_bloc/sign_up_bloc.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/view/widgets/display_sign_up_with_method.dart';
 import 'package:task_management_app/provider/settings_provider.dart';
-import 'custom_elevated_button_in_auth.dart';
+import '../../../../../../../core/utils/widgets/buttons/custom_elevated_button.dart';
 
 class DisplayRegistrationMethods extends StatelessWidget {
   const DisplayRegistrationMethods({
@@ -23,7 +23,7 @@ class DisplayRegistrationMethods extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        CustomElevatedButtonInAuth(
+        CustomElevatedButton(
             onPressed: onPressedSigInWithEmail,
             background:  Colors.yellow,
             child:  BlocConsumer<SignUpBloc,SignUpState>(
@@ -44,7 +44,7 @@ class DisplayRegistrationMethods extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 15),
-        CustomElevatedButtonInAuth(
+        CustomElevatedButton(
             onPressed: () {
               BlocProvider.of<SignUpBloc>(context).add(SignUpWithGoogle());
             }, background: const Color(0xfff0f5f2),

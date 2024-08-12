@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_management_app/features/auth/presentation/log_in/manager/log_in_bloc.dart';
+import 'package:task_management_app/features/auth/presentation/log_in/manager/log_in_bloc/log_in_bloc.dart';
 import '../../../../../../core/utils/functions/validate/validate_inputs_from_text_valid.dart';
 import '../../../../../../core/utils/widgets/TextFormField/custom_form_field.dart';
 

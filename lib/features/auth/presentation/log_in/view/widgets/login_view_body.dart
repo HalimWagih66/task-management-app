@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:task_management_app/features/auth/presentation/log_in/manager/log_in_bloc.dart';
+import 'package:task_management_app/core/utils/widgets/dialogs/show_dialog_for_reset_password.dart';
+import 'package:task_management_app/features/auth/presentation/log_in/manager/log_in_bloc/log_in_bloc.dart';
 import '../../../../../../core/utils/widgets/user_question_about_registration.dart';
 import '../../../../../../provider/settings_provider.dart';
 import '../../../sign_up/presentation/view/sign_up_view.dart';
@@ -42,6 +43,7 @@ class LoginViewBody extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                       onPressed: () {
+                        showDialogForResetPassword(context);
                       },
                       child: Text("Forget Password?",style: textStyleApp.font15greyRegular,)
                   ),

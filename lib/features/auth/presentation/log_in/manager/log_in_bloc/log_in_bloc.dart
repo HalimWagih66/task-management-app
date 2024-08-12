@@ -22,6 +22,14 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
           }, (user) {
             emit(LogInByEmailAndPasswordSuccess());
           },);
+        }else if(event is LogInByGoogle){
+          emit(LogInByGoogleLoading());
+          var result = await authRepo.signInByGoogle();
+          result.fold((failure) {
+            emit(LogInByGoogleFailure(failure.message));
+          }, (user) {
+            emit(LogInByGoogleSuccess());
+          },);
         }
       },
     );

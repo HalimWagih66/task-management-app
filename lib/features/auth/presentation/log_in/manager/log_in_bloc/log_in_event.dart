@@ -5,3 +5,6 @@ sealed class LogInEvent {}
 
 class LogInByEmailAndPassword extends LogInEvent{}
 
+class LogInByGoogle extends LogInEvent{}
+
+
