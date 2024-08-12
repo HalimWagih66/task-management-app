@@ -28,7 +28,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
       else if(event is SignUpWithGoogle){
         emit(SignUpWithGoogleLoading());
-        var result = await authRepo.createUserWithGoogle();
+        var result = await authRepo.signInByGoogle();
         result.fold((failure) {
           emit(SignUpWithEmailAndPasswordFailure(failure.message));
         }, (userModel) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:task_management_app/features/auth/presentation/log_in/view/login_view.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/image_picker_cubit/image_picker_cubit.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/sign_up_bloc/sign_up_bloc.dart';
 import 'package:task_management_app/provider/settings_provider.dart';
@@ -52,12 +53,10 @@ class SignUpViewBody extends StatelessWidget {
                   titleButtonWithEmail: "Sign Up",
                   titleButtonGoogle: "Sign Up Using Google",
                 ),
-                UserQuestionAboutRegistration(
+                const UserQuestionAboutRegistration(
                   questionText: "Already have an account?",
                   actionText: "Login",
-                  onPressed: () {
-
-                  },
+                  routeName: LoginView.routeName,
                 ),
               ],
             ),

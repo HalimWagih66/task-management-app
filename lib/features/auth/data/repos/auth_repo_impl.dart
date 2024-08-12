@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:task_management_app/core/errors/exceptions.dart';
 import 'package:task_management_app/core/errors/failures.dart';
 import 'package:task_management_app/core/models/user_model.dart';
-import 'package:task_management_app/core/services/firebase/firebase_auth.dart';
+import 'package:task_management_app/core/services/firebase/firebase_auth_service.dart';
+import 'package:task_management_app/core/utils/constant/sentence/sentence.dart';
 import 'package:task_management_app/core/utils/functions/path/edit_path_file.dart';
 import 'package:task_management_app/features/auth/data/repos/auth_repo.dart';
 import '../../../../core/services/firebase/database_services.dart';
@@ -26,12 +28,12 @@ class AuthRepoImpl implements AuthRepo {
     } on CustomException catch (e) {
       return left(ServerFailure(e.errorMessage));
     }catch (e){
-      return left(ServerFailure("Something went wrong, please try again."));
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
     }
   }
 
   @override
-  Future<Either<Failure, UserModel>> createUserWithGoogle()async {
+  Future<Either<Failure, UserModel>> signInByGoogle()async {
     try {
       var user = await firebaseAuthServices.signInWithGoogle();
       if(user != null){
@@ -47,8 +49,33 @@ class AuthRepoImpl implements AuthRepo {
         return left(UserFailure("Registration is not complete."));
       }
     } on Exception{
-      return left(ServerFailure("Something went wrong. Please try again later."));
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
     }
 
   }
+
+  @override
+  Future<Either<Failure, User>> loginWithEmail({required String emailAddress, required String password}) async{
+    try {
+      var user = await firebaseAuthServices.loginWithEmail(emailAddress: emailAddress, password: password);
+      return right(user);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> forgetPassword(String email) async{
+    try{
+      await firebaseAuthServices.forgetPassword(email);
+      return right(true);
+    }on CustomException catch(e){
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
+
 }

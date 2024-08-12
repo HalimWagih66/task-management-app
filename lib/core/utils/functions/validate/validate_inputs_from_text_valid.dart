@@ -4,7 +4,7 @@ import 'package:task_management_app/core/utils/functions/validate/regex.dart';
 class ValidateInputsFromTextValid{
   static String? validateEmailValid(String? input){
     if (input?.isEmpty == true || input?.trim().isEmpty == true) {
-      return "Please_enter_email_address";
+      return "Please enter email address";
     }
     if (!Regex.isEmailValid(input!)) {
       return "Please enter the email correctly";

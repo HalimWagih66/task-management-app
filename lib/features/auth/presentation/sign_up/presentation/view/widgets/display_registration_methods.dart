@@ -8,7 +8,7 @@ import 'package:task_management_app/core/utils/widgets/loading/custom_hexagon_Do
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/sign_up_bloc/sign_up_bloc.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/view/widgets/display_sign_up_with_method.dart';
 import 'package:task_management_app/provider/settings_provider.dart';
-import 'custom_elevated_button_in_auth.dart';
+import '../../../../../../../core/utils/widgets/buttons/custom_elevated_button.dart';
 
 class DisplayRegistrationMethods extends StatelessWidget {
   const DisplayRegistrationMethods({
@@ -23,13 +23,13 @@ class DisplayRegistrationMethods extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        CustomElevatedButtonInAuth(
+        CustomElevatedButton(
             onPressed: onPressedSigInWithEmail,
             background:  Colors.yellow,
             child:  BlocConsumer<SignUpBloc,SignUpState>(
               listener: (BuildContext context, SignUpState state) {
                 if(state is SignUpWithEmailAndPasswordFailure){
-                  showMessageWithSnackPar(message: state.errorMessage, context: context,background: textStyleApp.primaryColor);
+                  showMessageWithSnackBar(message: state.errorMessage, context: context,background: textStyleApp.primaryColor);
                 }else if(state is SignUpWithEmailAndPasswordSuccess){
                   showMessageWithAwesomeDialog(message: "An email has been sent to your personal email. Go to your email immediately and activate your account.",title: "Success", dialogType: DialogType.success,context: context,okActionName: "Ok",btnOkOnPress: () {},);
                 }
@@ -44,24 +44,24 @@ class DisplayRegistrationMethods extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 15),
-        CustomElevatedButtonInAuth(
+        CustomElevatedButton(
             onPressed: () {
               BlocProvider.of<SignUpBloc>(context).add(SignUpWithGoogle());
             }, background: const Color(0xfff0f5f2),
             child: BlocConsumer<SignUpBloc,SignUpState>(
               listener: (context, state) {
                 if(state is SignUpWithGoogleFailure){
-                  showMessageWithSnackPar(message: state.errorMessage, context: context,background: textStyleApp.primaryColor);
+                  showMessageWithSnackBar(message: state.errorMessage, context: context,background: textStyleApp.primaryColor);
                 }
                 else if(state is SignUpWithGoogleSuccess){
-                  showMessageWithSnackPar(message: "You have successfully registered using Google.", context: context,background: textStyleApp.primaryColor);
+                  showMessageWithSnackBar(message: "You have successfully registered using Google.", context: context,background: textStyleApp.primaryColor);
                 }
               },
                 builder: (context, state) {
                   if(state is SignUpWithGoogleLoading){
                     return CustomHexagonDotsLoading(color: textStyleApp.primaryColor);
                   }else{
-                    return DisplaySignUpWithMethod(text: titleButtonGoogle, image: 'assets/images/auth/google-logo.png',colorText: textStyleApp.primaryColor,);
+                    return DisplayRegistrationBySocial(text: titleButtonGoogle, image: 'assets/images/auth/google-logo.png',colorText: textStyleApp.primaryColor,);
                   }
                 },
             )
