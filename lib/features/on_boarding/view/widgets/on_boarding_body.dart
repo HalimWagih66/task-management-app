@@ -39,7 +39,7 @@ class OnBoardingBody extends StatelessWidget {
             text: "Get Started",
             backgroundColor: textThemeApp.primaryColor,
             pressEven: () {
-              GoRouter.of(context).push(SignUpView.routeName);
+              GoRouter.of(context).replace(SignUpView.routeName);
             },
           ),
           const SizedBox(height: 20),

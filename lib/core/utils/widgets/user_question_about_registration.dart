@@ -23,7 +23,7 @@ class UserQuestionAboutRegistration extends StatelessWidget {
         TextButton(
           style: TextButton.styleFrom(padding: EdgeInsets.zero),
           onPressed: () {
-            GoRouter.of(context).push(routeName);
+            GoRouter.of(context).replace(routeName);
           },
           child: Text(actionText, style: textThemeApp.font13PrimaryRegular.copyWith(fontWeight: FontWeight.w900,color: colorText)),
         )
