@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:task_management_app/provider/settings_provider.dart';
+import '../../../material_application.dart';
 
 class UserQuestionAboutRegistration extends StatelessWidget {
   const UserQuestionAboutRegistration({super.key,
@@ -15,7 +14,6 @@ class UserQuestionAboutRegistration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textThemeApp = Provider.of<SettingsProvider>(context).textThemeApp;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

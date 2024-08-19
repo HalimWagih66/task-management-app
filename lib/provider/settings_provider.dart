@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:task_management_app/core/utils/theme/text_theme_app.dart';
 import '../core/utils/shared/cache/share_preferences/cache_settings_app.dart';
-import '../core/utils/theme/text_theme_light_app.dart';
 
 class SettingsProvider extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.light;
-  TextThemeApp textThemeApp = TextThemeLightApp();
   String _languageCode = "ar";
 
 

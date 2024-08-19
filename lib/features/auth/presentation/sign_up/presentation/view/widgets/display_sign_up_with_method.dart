@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:task_management_app/provider/settings_provider.dart';
+
+import '../../../../../../../material_application.dart';
 
 class DisplayRegistrationBySocial extends StatelessWidget {
   const DisplayRegistrationBySocial({
@@ -11,13 +11,12 @@ class DisplayRegistrationBySocial extends StatelessWidget {
   final Color? colorText;
   @override
   Widget build(BuildContext context) {
-    var textStyleApp = Provider.of<SettingsProvider>(context).textThemeApp;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(image,height: 22),
         const SizedBox(width: 5),
-        Text(text,style: textStyleApp.font17PrimaryMedium.copyWith(color: colorText)),
+        Text(text,style: textThemeApp.font17PrimaryMedium.copyWith(color: colorText)),
       ],
     );
   }

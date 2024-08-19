@@ -1,7 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:task_management_app/provider/settings_provider.dart';
+
+
+import '../../../../material_application.dart';
 
 void showMessageWithAwesomeDialog({
     required BuildContext context,
@@ -15,7 +16,6 @@ void showMessageWithAwesomeDialog({
     String? cancelActionName,
     Function? cancelAction,
   }) {
-  var textThemeApp = Provider.of<SettingsProvider>(context,listen: false).textThemeApp;
     AwesomeDialog(
       dismissOnTouchOutside: dismissOnTouchOutside,
       dialogBackgroundColor: textThemeApp.secondPrimaryColor,

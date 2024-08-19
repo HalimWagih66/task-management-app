@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:task_management_app/features/auth/presentation/log_in/view/login_view.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/image_picker_cubit/image_picker_cubit.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/sign_up_bloc/sign_up_bloc.dart';
-import 'package:task_management_app/provider/settings_provider.dart';
 import '../../../../../../../core/utils/widgets/user_question_about_registration.dart';
+import '../../../../../../../material_application.dart';
 import 'custom_picked_image.dart';
 import 'display_registration_methods.dart';
 import 'form_sign_up.dart';
@@ -17,7 +16,6 @@ class SignUpViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textStyleApp = Provider.of<SettingsProvider>(context).textThemeApp;
     var formKey = GlobalKey<FormState>();
     return CustomScrollView(
       slivers: [
@@ -28,9 +26,9 @@ class SignUpViewBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text("Create Account", style: textStyleApp.font32PrimaryExtraBold),
+                Text("Create Account", style: textThemeApp.font32PrimaryExtraBold),
                 const SizedBox(height: 10),
-                Text("Sign up to get Started!", style: textStyleApp.font15greyRegular),
+                Text("Sign up to get Started!", style: textThemeApp.font15greyRegular),
                 const SizedBox(
                   height: 20,
                 ),
