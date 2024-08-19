@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:task_management_app/core/utils/widgets/dialogs/show_dialog_for_reset_password.dart';
 import 'package:task_management_app/features/auth/presentation/log_in/manager/log_in_bloc/log_in_bloc.dart';
 import '../../../../../../core/utils/widgets/user_question_about_registration.dart';
-import '../../../../../../provider/settings_provider.dart';
+import '../../../../../../material_application.dart';
 import '../../../sign_up/presentation/view/sign_up_view.dart';
 import 'display_login_methods.dart';
 import 'log_in_from.dart';
@@ -17,7 +16,6 @@ class LoginViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var formKey = GlobalKey<FormState>();
-    var textStyleApp = Provider.of<SettingsProvider>(context).textThemeApp;
     return CustomScrollView(
       slivers: [
         SliverFillRemaining(
@@ -27,11 +25,11 @@ class LoginViewBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Welcome Back",style: textStyleApp.font32PrimaryExtraBold),
+                Text("Welcome Back",style: textThemeApp.font32PrimaryExtraBold),
                 const SizedBox(
                   height: 10,
                 ),
-                Text("Enter Your Credential to continue",style: textStyleApp.font15greyRegular),
+                Text("Enter Your Credential to continue",style: textThemeApp.font15greyRegular),
                 const SizedBox(
                   height: 15,
                 ),
@@ -45,7 +43,7 @@ class LoginViewBody extends StatelessWidget {
                       onPressed: () {
                         showDialogForResetPassword(context);
                       },
-                      child: Text("Forget Password?",style: textStyleApp.font15greyRegular,)
+                      child: Text("Forget Password?",style: textThemeApp.font15greyRegular,)
                   ),
                 ),
                 SizedBox(

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 import 'package:task_management_app/core/utils/theme/constant_colors.dart';
 import 'package:task_management_app/core/utils/widgets/loading/custom_hexagon_Dots_loading.dart';
 import 'package:task_management_app/features/auth/presentation/log_in/manager/log_in_bloc/log_in_bloc.dart';
 import 'package:task_management_app/core/utils/widgets/buttons/custom_elevated_button.dart';
+import 'package:task_management_app/features/home_layout/presentation/view/home_layout_view.dart';
 import '../../../../../../core/utils/widgets/dialogs/show_message_with_snack_bar.dart';
-import '../../../../../../provider/settings_provider.dart';
+import '../../../../../../material_application.dart';
 import '../../../sign_up/presentation/view/widgets/display_sign_up_with_method.dart';
 
 class DisplayLoginMethods extends StatelessWidget {
@@ -14,7 +15,6 @@ class DisplayLoginMethods extends StatelessWidget {
   final void Function() onPressedLoginByEmail;
   @override
   Widget build(BuildContext context) {
-    var textStyleApp = Provider.of<SettingsProvider>(context).textThemeApp;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -24,16 +24,17 @@ class DisplayLoginMethods extends StatelessWidget {
             child: BlocConsumer<LogInBloc,LogInState>(
               listener: (context, state) {
                 if(state is LogInByEmailAndPasswordFailure){
-                   showMessageWithSnackBar(message: state.errorMessage, context: context, background: textStyleApp.primaryColor);
+                   showMessageWithSnackBar(message: state.errorMessage, context: context, background: textThemeApp.primaryColor);
                 }else if(state is LogInByEmailAndPasswordSuccess){
+                  GoRouter.of(context).replace(HomeLayoutView.routeName);
                   showMessageWithSnackBar(message: "You have successfully logged in, dear.", context: context, background: primaryColorApp);
                 }
               },
               builder: (context, state) {
                 if(state is LogInByEmailAndPasswordLoading){
-                  return CustomHexagonDotsLoading(color: textStyleApp.primaryColor);
+                  return CustomHexagonDotsLoading(color: textThemeApp.primaryColor);
                 }else{
-                  return Text("Login with email",style: textStyleApp.font17PrimaryMedium);
+                  return Text("Login with email",style: textThemeApp.font17PrimaryMedium);
                 }
               },
             )
@@ -47,16 +48,17 @@ class DisplayLoginMethods extends StatelessWidget {
           child: BlocConsumer<LogInBloc,LogInState>(
             listener: (context, state) {
               if(state is LogInByGoogleFailure){
-                showMessageWithSnackBar(message: state.errorMessage, context: context, background: textStyleApp.primaryColor);
+                showMessageWithSnackBar(message: state.errorMessage, context: context, background: textThemeApp.primaryColor);
               }else if(state is LogInByGoogleSuccess){
+                GoRouter.of(context).replace(HomeLayoutView.routeName);
                 showMessageWithSnackBar(message: "You have successfully logged in, dear.", context: context, background: primaryColorApp);
               }
             } ,
             builder: (context, state) {
               if(state is LogInByGoogleLoading){
-                return CustomHexagonDotsLoading(color: textStyleApp.primaryColor);
+                return CustomHexagonDotsLoading(color: textThemeApp.primaryColor);
               }else{
-                return DisplayRegistrationBySocial(text: "Login with google",image: "assets/images/auth/google-logo.png",colorText: textStyleApp.primaryColor);
+                return DisplayRegistrationBySocial(text: "Login with google",image: "assets/images/auth/google-logo.png",colorText: textThemeApp.primaryColor);
               }
             } ,
           )

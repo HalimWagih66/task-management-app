@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:task_management_app/core/utils/widgets/TextFormField/text_form_field_border.dart';
-import 'package:task_management_app/provider/settings_provider.dart';
+import '../../../../material_application.dart';
 
 typedef FunctionValidate = String? Function(String?);
 class CustomTextFormField extends StatelessWidget {
@@ -41,7 +40,6 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textThemeApp = Provider.of<SettingsProvider>(context).textThemeApp;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

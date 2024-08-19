@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:task_management_app/core/services/service_locator.dart';
 import 'package:task_management_app/core/utils/widgets/TextFormField/custom_form_field.dart';
 import 'package:task_management_app/core/utils/widgets/buttons/custom_ink_will.dart';
 import 'package:task_management_app/core/utils/widgets/dialogs/show_message_with_snack_bar.dart';
 import 'package:task_management_app/core/utils/widgets/loading/custom_hexagon_Dots_loading.dart';
 import 'package:task_management_app/features/auth/data/repos/auth_repo.dart';
-import 'package:task_management_app/provider/settings_provider.dart';
 import '../../../../features/auth/presentation/log_in/manager/reset_password_bloc/reset_password_bloc.dart';
+import '../../../../material_application.dart';
 import '../../functions/validate/validate_inputs_from_text_valid.dart';
 
 Future<void> showDialogForResetPassword(BuildContext context) {
@@ -38,7 +37,6 @@ class _CustomAlertDialogFoResetPasswordState
 
   @override
   Widget build(BuildContext context) {
-    var textThemeApp = Provider.of<SettingsProvider>(context).textThemeApp;
     var formKey = GlobalKey<FormState>();
     return AlertDialog(
       elevation: 0,

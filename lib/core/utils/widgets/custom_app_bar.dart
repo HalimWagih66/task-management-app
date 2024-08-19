@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:task_management_app/provider/settings_provider.dart';
+
+import '../../../material_application.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key, required this.leadingIconData, required this.backgroundColor, required this.title, this.onPressed});
@@ -10,7 +10,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    var textThemeApp = Provider.of<SettingsProvider>(context).textThemeApp;
     return AppBar(
       foregroundColor: Colors.transparent,
       elevation: 0,
