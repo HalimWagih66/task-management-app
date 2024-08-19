@@ -1,10 +1,9 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:task_management_app/core/errors/exceptions.dart';
 import 'package:task_management_app/core/models/user_model.dart';
-import 'package:task_management_app/core/services/firebase/database_services.dart';
+import 'package:task_management_app/core/services/firebase/services/database_services.dart';
 
 class FirebaseDataBase implements DatabaseServices{
    CollectionReference<UserModel> getUsersCollection({required String collectionName}){

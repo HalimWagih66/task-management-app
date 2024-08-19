@@ -11,7 +11,7 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
     on<ResetPasswordEvent>((event, emit) async{
       if(event is ResetPassword){
         emit(ResetPasswordLoading());
-        var result = await authRepo.forgetPassword(event.email);
+        var result = await authRepo.resetPassword(event.email);
         result.fold((failure) {
           emit(ResetPasswordFailure(failure.message));
         }, (_) {

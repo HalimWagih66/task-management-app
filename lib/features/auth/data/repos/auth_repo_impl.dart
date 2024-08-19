@@ -1,26 +1,25 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:task_management_app/core/errors/exceptions.dart';
 import 'package:task_management_app/core/errors/failures.dart';
 import 'package:task_management_app/core/models/user_model.dart';
-import 'package:task_management_app/core/services/firebase/firebase_auth_service.dart';
+import 'package:task_management_app/core/services/firebase/services/auth_service.dart';
 import 'package:task_management_app/core/utils/constant/sentence/sentence.dart';
 import 'package:task_management_app/core/utils/functions/path/edit_path_file.dart';
 import 'package:task_management_app/features/auth/data/repos/auth_repo.dart';
-import '../../../../core/services/firebase/database_services.dart';
+import '../../../../core/services/firebase/services/database_services.dart';
 
 class AuthRepoImpl implements AuthRepo {
-  AuthRepoImpl({required this.databaseServices,required this.firebaseAuthServices});
+  AuthRepoImpl({required this.databaseServices,required this.authServices});
   DatabaseServices databaseServices;
-  FirebaseAuthServices firebaseAuthServices;
+  AuthServices authServices;
 
   @override
   Future<Either<Failure, UserModel>> createUserWithEmailAndPassword({required UserModel userModel, required File file, required String password}) async{
     try {
-      var userFirebaseAuth = await firebaseAuthServices.createUserWithEmailAndPassword(emailAddress: userModel.email!, password: password);
-      userModel.id = userFirebaseAuth!.uid;
-      await firebaseAuthServices.verifyEmail();
+      var userFirebaseAuth = await authServices.createUserWithEmailAndPassword(emailAddress: userModel.email!, password: password);
+      userModel.id = userFirebaseAuth.id;
+      await authServices.sendEmailVerification();
       String imageUrl = await databaseServices.uploadFileInDatabase(file:file,pathTheFile: "${EditPath.nameEmail(userModel.email!)}/images/",fileName: "person_image");
       userModel.imageUrl = imageUrl;
       await databaseServices.createUser(userJson: userModel.toJson(),collectionName: "users");
@@ -35,13 +34,13 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<Failure, UserModel>> signInByGoogle()async {
     try {
-      var user = await firebaseAuthServices.signInWithGoogle();
+      var user = await authServices.signInWithGoogle();
       if(user != null){
         UserModel userModel = UserModel(
-            name: user.displayName,
-            id: user.uid,
+            name: user.name,
+            id: user.id,
             email: user.email,
-            imageUrl: user.photoURL
+            imageUrl: user.imageUrl
         );
         await databaseServices.createUser(userJson: userModel.toJson(), collectionName: "users");
         return right(userModel);
@@ -55,9 +54,9 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, User>> loginWithEmail({required String emailAddress, required String password}) async{
+  Future<Either<Failure, UserModel>> loginWithEmail({required String emailAddress, required String password}) async{
     try {
-      var user = await firebaseAuthServices.loginWithEmail(emailAddress: emailAddress, password: password);
+      var user = await authServices.loginWithEmailAndPassword(emailAddress: emailAddress, password: password);
       return right(user);
     } on CustomException catch (e) {
       return left(ServerFailure(e.errorMessage));
@@ -67,9 +66,9 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, bool>> forgetPassword(String email) async{
+  Future<Either<Failure, bool>> resetPassword(String email) async{
     try{
-      await firebaseAuthServices.forgetPassword(email);
+      await authServices.resetPassword(email);
       return right(true);
     }on CustomException catch(e){
       return left(ServerFailure(e.errorMessage));
