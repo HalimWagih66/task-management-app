@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:task_management_app/features/auth/data/repos/auth_repo.dart';
 import 'package:task_management_app/features/auth/presentation/log_in/manager/log_in_bloc/log_in_bloc.dart';
 import '../../../../../core/services/service_locator.dart';
@@ -15,10 +14,9 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(
-          onPressed: () {
-            GoRouter.of(context).pop;
-            }, leadingIconData: Icons.arrow_back_ios, backgroundColor: Colors.transparent, title: 'Login',
+        appBar: const CustomAppBar(
+          backgroundColor: Colors.transparent,
+          title: 'Log In',
         ),
         body: BlocProvider(
           create: (context) => LogInBloc(authRepo: getIt.get<AuthRepo>()),

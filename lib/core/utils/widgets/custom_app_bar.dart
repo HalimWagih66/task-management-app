@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:task_management_app/provider/settings_provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key, required this.leadingIconData, required this.backgroundColor, required this.title, this.onPressed});
-  final IconData leadingIconData;
+  const CustomAppBar({super.key, this.leadingIconData, required this.backgroundColor, required this.title, this.onPressed});
+  final IconData? leadingIconData;
   final Color backgroundColor;
   final String title;
   final void Function()? onPressed;
@@ -15,7 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       foregroundColor: Colors.transparent,
       elevation: 0,
       backgroundColor: Colors.transparent,
-      leading: IconButton(icon: Icon(leadingIconData,color: textThemeApp.primaryColor,), onPressed: onPressed),
+      leading: leadingIconData == null?null:IconButton(icon: Icon(leadingIconData,color: textThemeApp.primaryColor,), onPressed: onPressed),
       title: Text(title,style: textThemeApp.font17PrimaryMedium),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:task_management_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/sign_up_bloc/sign_up_bloc.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/view/widgets/sign_up_view_body.dart';
@@ -14,13 +13,9 @@ class SignUpView extends StatelessWidget  {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: CustomAppBar(
-       onPressed: () {
-         GoRouter.of(context).pop();
-       },
+     appBar: const CustomAppBar(
        title: "Sign Up",
        backgroundColor: Colors.transparent,
-       leadingIconData: Icons.arrow_back_ios,
      ),
       body: MultiBlocProvider(
         providers: [
