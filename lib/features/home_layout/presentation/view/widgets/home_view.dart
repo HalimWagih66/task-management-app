@@ -36,13 +36,14 @@ class _HomeViewState extends State<HomeView>{
     return Scaffold(
       body: PageView.builder(
         controller: homeLayoutViewModel.pageController,
-        physics: const NeverScrollableScrollPhysics(),
+        physics: NeverScrollableScrollPhysics(),
+        onPageChanged: (value) {
+          print("{page = $value}");
+        },
         itemCount: homeFragments.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) => homeFragments[index],
       ),
     );
   }
-
-
 }
