@@ -2,22 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:task_management_app/core/errors/exceptions.dart';
 import 'package:task_management_app/core/models/user_model.dart';
-import 'package:task_management_app/core/services/firebase/services/auth_service.dart';
+import 'package:task_management_app/core/services/firebase/services/auth_services.dart';
 import 'package:task_management_app/core/utils/constant/sentence/sentence.dart';
 class FirebaseAuthServices implements AuthServices{
   @override
-  Future<UserModel> createUserWithEmailAndPassword({required String emailAddress,required String password})async {
+  Future<String?> createUserWithEmailAndPassword({required String emailAddress,required String password})async {
     try {
       final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
-      return UserModel(
-        imageUrl: credential.user?.photoURL,
-        email: credential.user?.email,
-        id: credential.user?.uid,
-        name: credential.user?.displayName
-      );
+      return credential.user?.email;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         throw CustomException(errorMessage: "The password provided is too weak.");
@@ -47,10 +42,10 @@ class FirebaseAuthServices implements AuthServices{
     );
     var credentialGoogle = await FirebaseAuth.instance.signInWithCredential(credential);
     return UserModel(
-      name: credentialGoogle.user?.displayName,
-      id: credentialGoogle.user?.uid,
-      email: credentialGoogle.user?.email,
-      imageUrl: credentialGoogle.user?.photoURL,
+      imageUrl: credentialGoogle.user!.photoURL,
+      email: credentialGoogle.user!.email,
+      id: credentialGoogle.user!.uid,
+      name: credentialGoogle.user!.displayName
     );
   }
   @override
@@ -58,18 +53,13 @@ class FirebaseAuthServices implements AuthServices{
     await FirebaseAuth.instance.currentUser?.sendEmailVerification();
   }
   @override
-  Future<UserModel>loginWithEmailAndPassword({required String emailAddress, required String password})async{
+  Future<String?>loginWithEmailAndPassword({required String emailAddress, required String password})async{
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailAddress,
           password: password
       );
-      return UserModel(
-        name: credential.user?.displayName,
-        id: credential.user?.uid,
-        email: credential.user?.email,
-        imageUrl: credential.user?.photoURL,
-      );
+      return credential.user?.email!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw CustomException(errorMessage: Sentence.noUserFoundForThatEmail);

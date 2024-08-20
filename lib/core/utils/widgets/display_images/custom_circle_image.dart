@@ -1,31 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task_management_app/core/utils/theme/constant_colors.dart';
 class CustomCircleImage extends StatelessWidget {
-  const CustomCircleImage( {super.key, required this.colorBorderCircle,  this.radiusCircleImage = 66, required this.imageProvider,});
-  final Color colorBorderCircle;
-  final double radiusCircleImage;
-  final ImageProvider<Object>? imageProvider;
+  const CustomCircleImage( {super.key, required this.child,});
+  final Widget child;
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: radiusCircleImage+6,
-      backgroundColor: colorBorderCircle,
+      backgroundColor: primaryColorApp,
+      radius: 80.w,
       child: CircleAvatar(
+        radius: 77.w,
         backgroundColor: Colors.white,
-        radius: radiusCircleImage+2,
-        child: CircleAvatar(
-          radius: radiusCircleImage,
-          backgroundColor: const Color(0xfff7f6fa),
-          backgroundImage: imageProvider,
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: imageProvider != null
-                ? null
-                : Icon(
-              Icons.person,
-              size: radiusCircleImage+14,
-              color: Colors.grey,
-            ) ,),
-        ),
+        child: child
       ),
     );
   }

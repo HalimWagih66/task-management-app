@@ -1,26 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:provider/provider.dart';
 import 'package:task_management_app/core/utils/theme/constant_colors.dart';
+import 'package:task_management_app/core/utils/widgets/loading/custom_hexagon_Dots_loading.dart';
 import 'package:task_management_app/features/home_layout/presentation/view/widgets/home_view.dart';
 import 'package:task_management_app/features/home_layout/presentation/view/widgets/menu_view_page.dart';
-import 'package:task_management_app/features/home_layout/presentation/view_model/home_layout_view_model.dart';
+import 'package:task_management_app/material_application.dart';
+import '../manager/user_model_cubit/user_model_cubit.dart';
+import '../manager/user_model_cubit/user_model_state.dart';
 
-class HomeLayoutView extends StatelessWidget {
+class HomeLayoutView extends StatefulWidget {
   const HomeLayoutView({super.key});
+
   static const routeName = "/HomeLayoutView";
+
+  @override
+  State<HomeLayoutView> createState() => _HomeLayoutViewState();
+}
+
+class _HomeLayoutViewState extends State<HomeLayoutView> {
+  @override
+  void initState() {
+    super.initState();
+    fetchUserModel();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (context) => HomeLayoutViewModel(),
-      child: const ZoomDrawer(
-        angle: 0,
-        mainScreenScale: 0.1,
-        borderRadius: 40,
-        menuBackgroundColor: primaryColorApp,
-        menuScreen: MenuViewPage(),
-        mainScreen: HomeView(),
+    return ZoomDrawer(
+      angle: 0,
+      mainScreenScale: 0.1,
+      borderRadius: 40,
+      menuBackgroundColor: primaryColorApp,
+      menuScreen: const MenuViewPage(),
+      mainScreen: BlocBuilder<UserModelCubit, UserModelState>(
+        builder: (context, state) {
+          if(state is UserModelLoading){
+            return Container(color: textThemeApp.secondPrimaryColor,child: const CustomHexagonDotsLoading(color: primaryColorApp));
+          }else if(state is UserModelFailure){
+            return Container(color: textThemeApp.secondPrimaryColor,child: Center(child: Text(state.errorMessage),));
+          }else if(state is UserModelSuccess){
+            return const HomeView();
+          }return const SizedBox();
+        },
       ),
     );
+  }
+  Future<void> fetchUserModel()async {
+    await BlocProvider.of<UserModelCubit>(context).fetchUserModel();
   }
 }

@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:task_management_app/provider/settings_provider.dart';
+import 'package:task_management_app/provider/settings/settings_provider.dart';
 import 'core/services/service_locator.dart';
 import 'firebase_options.dart';
 import 'my_app.dart';
@@ -17,9 +17,8 @@ Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox(SETTINGS_KEY);
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => SettingsProvider(),
-      child: const MyApp(),
-    ),
+    BlocProvider(create: (context) => SettingsProvider(),
+    child: const MyApp()
+    )
   );
 }

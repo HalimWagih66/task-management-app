@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:task_management_app/core/utils/theme/constant_colors.dart';
 import 'package:task_management_app/core/utils/widgets/display_images/custom_circle_image.dart';
+import 'package:task_management_app/core/utils/widgets/display_images/custom_circle_image_for_file_image.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/sign_up_bloc/sign_up_bloc.dart';
 
 import '../../../../../../../core/utils/widgets/dialogs/show_dialog_upload_image.dart';
@@ -35,16 +35,14 @@ class CustomPickedImage extends StatelessWidget {
             return Column(
               children: [
                 CustomCircleImage(
-                colorBorderCircle: primaryColorApp,
-                imageProvider: imagePickerCubit.pickedImage == null?null:FileImage(imagePickerCubit.pickedImage!)
+                child: CustomCircleImageForFileImage(imageProvider: imagePickerCubit.pickedImage == null?null:FileImage(imagePickerCubit.pickedImage!))
                 ),
                 const SizedBox(height: 20),
                 Text("Please Enter your Image",style: textThemeApp.font13PrimaryRegular.copyWith(color: Colors.red),),
               ],
             );
           }
-          return CustomCircleImage(
-              colorBorderCircle: primaryColorApp,
+          return CustomCircleImageForFileImage(
               imageProvider: imagePickerCubit.pickedImage == null?null:FileImage(imagePickerCubit.pickedImage!)
           );
         },

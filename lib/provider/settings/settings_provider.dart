@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import '../core/utils/shared/cache/share_preferences/cache_settings_app.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_management_app/provider/settings/settings_state.dart';
+import '../../core/utils/shared/cache/share_preferences/cache_settings_app.dart';
 
-class SettingsProvider extends ChangeNotifier {
+class SettingsProvider extends Cubit<SettingsState> {
+  SettingsProvider():super(SettingsInitial());
+
   ThemeMode _themeMode = ThemeMode.light;
   String _languageCode = "ar";
 
@@ -43,7 +47,6 @@ class SettingsProvider extends ChangeNotifier {
   Future<void> changeLanguageApp(String languageCode)async{
     this.languageCode = languageCode;
     await CacheSettingApp.saveLanguageCode(languageCode);
-    notifyListeners();
   }
   // Future<void> changeThemeMode(ThemeMode themeMode)async{
   //   this.themeMode = themeMode;

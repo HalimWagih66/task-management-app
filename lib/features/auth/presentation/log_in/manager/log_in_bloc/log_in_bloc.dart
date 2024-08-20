@@ -16,7 +16,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
       (event, emit) async {
         if (event is LogInByEmailAndPassword) {
           emit(LogInByEmailAndPasswordLoading());
-          var result = await authRepo.loginWithEmail(emailAddress: emailAddress!, password: password!);
+          var result = await authRepo.loginWithEmailAndPassword(emailAddress: emailAddress!, password: password!);
           result.fold((failure) {
             emit(LogInByEmailAndPasswordFailure(failure.message));
           }, (user) {

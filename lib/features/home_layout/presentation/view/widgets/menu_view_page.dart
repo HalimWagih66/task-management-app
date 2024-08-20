@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:task_management_app/features/home_layout/presentation/view_model/home_layout_view_model.dart';
 import '../../../../../core/utils/theme/constant_colors.dart';
 import '../../../../../core/utils/widgets/dialogs/custom_rating.dart';
 import '../../../../../material_application.dart';
+import '../../manager/home_layout_cubit/home_layout_cubit.dart';
 import 'item_drawer.dart';
 class MenuViewPage extends StatefulWidget {
   const MenuViewPage({super.key});
@@ -17,7 +17,7 @@ class MenuViewPage extends StatefulWidget {
 class _MenuViewPageState extends State<MenuViewPage>{
   @override
   Widget build(BuildContext context) {
-    var homeLayoutViewModel = Provider.of<HomeLayoutViewModel>(context);
+    var homeLayoutViewModel = Provider.of<HomeLayoutCubit>(context);
     return Scaffold(
       backgroundColor: primaryColorApp,
       body: Padding(
