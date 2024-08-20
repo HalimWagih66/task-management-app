@@ -3,6 +3,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:task_management_app/features/home_layout/presentation/view_model/home_layout_view_model.dart';
+import '../../../../../core/utils/theme/constant_colors.dart';
 import '../../../../../core/utils/widgets/dialogs/custom_rating.dart';
 import '../../../../../material_application.dart';
 import 'item_drawer.dart';
@@ -18,7 +19,7 @@ class _MenuViewPageState extends State<MenuViewPage>{
   Widget build(BuildContext context) {
     var homeLayoutViewModel = Provider.of<HomeLayoutViewModel>(context);
     return Scaffold(
-      backgroundColor: const Color(0xff617afd),
+      backgroundColor: primaryColorApp,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
