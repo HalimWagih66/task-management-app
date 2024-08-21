@@ -64,6 +64,8 @@ dependencies:
   flutter_zoom_drawer: ^3.2.0
   rating_dialog: ^2.0.4
   firebase_app_check: ^0.2.1+8
+  url_launcher: ^6.3.0
+  font_awesome_flutter: ^10.7.0
 
 dev_dependencies:
   hive_generator: ^2.0.1
