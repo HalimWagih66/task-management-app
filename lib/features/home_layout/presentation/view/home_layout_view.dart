@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -22,7 +23,8 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
   @override
   void initState() {
     super.initState();
-    fetchUserModel();
+    String uid = FirebaseAuth.instance.currentUser!.email!;
+    fetchUserModel(uid);
   }
 
   @override
@@ -46,7 +48,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
       ),
     );
   }
-  Future<void> fetchUserModel()async {
-    await BlocProvider.of<UserModelCubit>(context).fetchUserModel();
+  Future<void> fetchUserModel(String uid)async {
+    await BlocProvider.of<UserModelCubit>(context).fetchUserModel(uid);
   }
 }

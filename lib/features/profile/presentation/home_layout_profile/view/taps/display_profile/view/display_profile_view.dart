@@ -16,7 +16,7 @@ class DisplayProfileView extends StatelessWidget {
     var userModel = BlocProvider.of<UserModelCubit>(context).userModel;
     return Column(
       children: [
-        const CustomAppBar(title: "Profile"),
+        const CustomAppBar(title: "Profile",backgroundColor: Colors.transparent,),
         InkWell(
           onTap: () {
             BlocProvider.of<HomeLayoutProfileCubit>(context).animateToPage(1);

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:task_management_app/core/services/service_locator.dart';
@@ -11,7 +12,7 @@ import '../../features/auth/presentation/sign_up/presentation/view/sign_up_view.
 
 class AppRouter{
   static GoRouter appRouter = GoRouter(
-    initialLocation: HomeLayoutView.routeName,
+    initialLocation: FirebaseAuth.instance.currentUser == null?OnBoardingView.routeName:HomeLayoutView.routeName,
       routes: [
         GoRoute(
           path: OnBoardingView.routeName,
