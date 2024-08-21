@@ -87,4 +87,15 @@ class FirebaseAuthServices implements AuthServices{
       }
     }
   }
+
+  @override
+  Future<void> signOut() async{
+    try {
+      await FirebaseAuth.instance.signOut();
+    } on FirebaseAuthException catch (e) {
+      throw CustomException(errorMessage: e.code);
+    }catch (e){
+      throw CustomException(errorMessage: e.toString());
+    }
+  }
 }

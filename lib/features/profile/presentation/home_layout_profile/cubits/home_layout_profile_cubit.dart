@@ -18,4 +18,5 @@ class HomeLayoutProfileCubit extends Cubit<HomeLayoutProfileState>{
   void animateToPage(int page){
     pageController.animateToPage(page, duration: getDuration(), curve: Curves.easeInOut);
   }
+
 }

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:task_management_app/core/services/firebase/services/auth_services.dart';
 import '../../../core/errors/exceptions.dart';
 import '../../../core/errors/failures.dart';
 import '../../../core/models/user_model.dart';
@@ -7,9 +8,9 @@ import '../../../core/services/firebase/services/database_services.dart';
 import 'home_layout_repo.dart';
 
 class HomeLayoutRepoImpl implements HomeLayoutRepo{
-  HomeLayoutRepoImpl({required this.databaseServices});
+  HomeLayoutRepoImpl({required this.databaseServices,required this.authServices});
   DatabaseServices databaseServices;
-
+  AuthServices authServices;
   @override
   Future<Either<Failure, UserModel>> fetchUserModel({required String uid}) async{
     try {
@@ -26,9 +27,21 @@ class HomeLayoutRepoImpl implements HomeLayoutRepo{
       }
       return right(userModel);
     } on CustomException catch (e) {
-      throw left(ServerFailure(e.errorMessage));
+      return left(ServerFailure(e.errorMessage));
     } catch (e){
-      throw left(ServerFailure(e.toString()));
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure,bool>> signOut() async{
+    try {
+      await authServices.signOut();
+      return right(true);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    } catch(e){
+      return left(ServerFailure(e.toString()));
     }
   }
 

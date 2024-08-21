@@ -24,7 +24,7 @@ class DisplayProfileView extends StatelessWidget {
           child: CustomCircleImage(
             child: CustomCachedNetworkImage(
               urlImage: userModel!.imageUrl!,
-              height: 160.h,
+              height: 250.w,
             ),
           ),
         ),

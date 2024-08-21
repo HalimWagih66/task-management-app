@@ -12,7 +12,7 @@ import '../../features/auth/presentation/sign_up/presentation/view/sign_up_view.
 
 class AppRouter{
   static GoRouter appRouter = GoRouter(
-    initialLocation: FirebaseAuth.instance.currentUser == null?null:HomeLayoutView.routeName,
+    //initialLocation: FirebaseAuth.instance.currentUser == null?null:HomeLayoutView.routeName,
       routes: [
         GoRoute(
           path: OnBoardingView.routeName,
@@ -31,7 +31,7 @@ class AppRouter{
           builder: (context, state) => MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => HomeLayoutCubit()),
-              BlocProvider(create: (context) => UserModelCubit(homeLayoutRepo: getIt.get<HomeLayoutRepo>()),)
+              BlocProvider(create: (context) => UserModelCubit(homeLayoutRepo: getIt.get<HomeLayoutRepo>()))
             ], child: const HomeLayoutView(),
           ),
         ),

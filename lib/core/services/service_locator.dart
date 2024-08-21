@@ -22,6 +22,7 @@ void setupServiceLocator(){
     getIt.registerSingleton<HomeLayoutRepo>(
         HomeLayoutRepoImpl(
             databaseServices: getIt<DatabaseServices>(),
+            authServices: getIt<AuthServices>()
         ),
     );
 }

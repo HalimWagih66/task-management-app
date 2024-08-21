@@ -69,8 +69,8 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, String?>> loginWithEmailAndPassword({required String emailAddress, required String password}) async{
     try {
       var uid = await authServices.loginWithEmailAndPassword(emailAddress: emailAddress, password: password);
-      if(FirebaseAuth.instance.currentUser!.emailVerified){
-        throw left(ServerFailure("Activate your account dear"));
+      if(FirebaseAuth.instance.currentUser!.emailVerified == false){
+        return left(ServerFailure("Activate your account dear"));
       }
       return right(uid);
     } on CustomException catch (e) {

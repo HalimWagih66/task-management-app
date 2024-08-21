@@ -42,8 +42,10 @@ class CustomPickedImage extends StatelessWidget {
               ],
             );
           }
-          return CustomCircleImageForFileImage(
-              imageProvider: imagePickerCubit.pickedImage == null?null:FileImage(imagePickerCubit.pickedImage!)
+          return CustomCircleImage(
+            child: CustomCircleImageForFileImage(
+                imageProvider: imagePickerCubit.pickedImage == null?null:FileImage(imagePickerCubit.pickedImage!)
+            ),
           );
         },
       ),

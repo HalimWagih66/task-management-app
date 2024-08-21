@@ -21,8 +21,10 @@ class HomeLayoutCubit extends Cubit<HomeLayoutState>{
   HomeLayoutCubit():super(HomeLayoutInitial()){
     pageController = PageController();
   }
+
   void animateToPage(int page){
     pageController.animateToPage(page, duration: getDuration(), curve: Curves.easeInOut);
   }
+
 
 }

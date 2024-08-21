@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_management_app/material_application.dart';
 
 class CustomCircleImageForFileImage extends StatelessWidget {
@@ -11,16 +12,13 @@ class CustomCircleImageForFileImage extends StatelessWidget {
     return CircleAvatar(
       backgroundColor: textThemeApp.secondPrimaryColor,
       backgroundImage: imageProvider,
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: imageProvider != null
-            ? null
-            : const Icon(
-                Icons.person,
-                size: 20,
-                color: Colors.grey,
-              ),
-      ),
+      child: imageProvider != null
+          ? null
+          : Icon(
+              Icons.person,
+              size: 60.w,
+              color: Colors.grey,
+            ),
     );
   }
 }
