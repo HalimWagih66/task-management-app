@@ -36,7 +36,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
       mainScreen: BlocBuilder<UserModelCubit, UserModelState>(
         builder: (context, state) {
           if(state is UserModelLoading){
-            return Container(color: textThemeApp.secondPrimaryColor,child: const CustomHexagonDotsLoading(color: primaryColorApp));
+            return Container(color: textThemeApp.secondPrimaryColor,child: const CustomHexagonDotsLoading(color: primaryColorApp,size: 50),);
           }else if(state is UserModelFailure){
             return Container(color: textThemeApp.secondPrimaryColor,child: Center(child: Text(state.errorMessage),));
           }else if(state is UserModelSuccess){
