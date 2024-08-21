@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/widgets/duration.dart';
 import '../../../../profile/presentation/home_layout_profile/view/home_layout_profile_view.dart';
+import '../../../../support/view/support_view.dart';
 import 'home_layout_state.dart';
 
 class HomeLayoutCubit extends Cubit<HomeLayoutState>{
@@ -14,9 +15,7 @@ class HomeLayoutCubit extends Cubit<HomeLayoutState>{
     Container(
       color: Colors.grey,
     ),
-    Container(
-      color: Colors.blue,
-    ),
+    const SupportView()
   ];
   HomeLayoutCubit():super(HomeLayoutInitial()){
     pageController = PageController();
