@@ -7,6 +7,8 @@ import 'package:task_management_app/features/auth/data/repos/auth_repo.dart';
 import 'package:task_management_app/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:task_management_app/features/home_layout/data/home_layout_repo.dart';
 import 'package:task_management_app/features/home_layout/data/home_layout_repo_impl.dart';
+import 'package:task_management_app/features/profile/data/profile_repo.dart';
+import 'package:task_management_app/features/profile/data/profile_repo_impl.dart';
 
 
 final getIt = GetIt.instance;
@@ -21,6 +23,12 @@ void setupServiceLocator(){
     );
     getIt.registerSingleton<HomeLayoutRepo>(
         HomeLayoutRepoImpl(
+            databaseServices: getIt<DatabaseServices>(),
+            authServices: getIt<AuthServices>()
+        ),
+    );
+    getIt.registerSingleton<ProfileRepo>(
+        ProfileRepoImpl(
             databaseServices: getIt<DatabaseServices>(),
             authServices: getIt<AuthServices>()
         ),

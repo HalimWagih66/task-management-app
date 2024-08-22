@@ -23,6 +23,7 @@ class _LogInFromState extends State<LogInFrom> {
             BlocProvider.of<LogInBloc>(context).emailAddress = email;
             return ValidateInputsFromTextValid.validateEmailValid(email);
           },
+          textInputType: TextInputType.emailAddress,
           hintText: "Email Address",
           prefixIcon: Icons.email_outlined,
         ),

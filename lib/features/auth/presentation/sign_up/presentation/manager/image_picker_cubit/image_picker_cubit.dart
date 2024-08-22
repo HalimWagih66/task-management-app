@@ -9,18 +9,22 @@ class ImagePickerCubit extends Cubit<ImagePickerState> {
   ImagePickerCubit() : super(ImagePickerInitial());
   File? pickedImage;
 
-  Future<void> onPressedCamera() async {
+  Future<bool> onPressedCamera() async {
     var tempPickedImage = await ImagePackerFunctions.cameraPicker();
     if (tempPickedImage != null) {
       changePickImage(tempPickedImage);
+      return true;
     }
+    return false;
   }
 
-  Future<void> onPressedGallery() async {
+  Future<bool> onPressedGallery() async {
     File? tempPickedImage = await ImagePackerFunctions.galleryPicker();
     if (tempPickedImage != null) {
       changePickImage(tempPickedImage);
+      return true;
     }
+    return false;
   }
 
   void changePickImage(File pickImage) {

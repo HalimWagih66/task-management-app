@@ -9,16 +9,21 @@ class CustomCircleImageForFileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: textThemeApp.secondPrimaryColor,
-      backgroundImage: imageProvider,
-      child: imageProvider != null
-          ? null
-          : Icon(
-              Icons.person,
-              size: 60.w,
-              color: Colors.grey,
+    return AspectRatio(
+      aspectRatio: 1,
+      child: CircleAvatar(
+        backgroundColor: textThemeApp.secondPrimaryColor,
+        backgroundImage: imageProvider,
+        child: imageProvider != null
+            ? null
+            : Center(
+              child: Icon(
+                  Icons.person,
+                  size: 60.w,
+                  color: Colors.grey,
+                ),
             ),
+      ),
     );
   }
 }

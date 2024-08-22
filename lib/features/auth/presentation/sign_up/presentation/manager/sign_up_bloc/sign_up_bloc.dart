@@ -23,9 +23,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           this.userModel = userModel;
         },);
       }
-
-
-
       else if(event is SignUpWithGoogle){
         emit(SignUpWithGoogleLoading());
         var result = await authRepo.signInByGoogle();

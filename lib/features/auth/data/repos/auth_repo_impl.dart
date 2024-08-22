@@ -5,6 +5,7 @@ import 'package:task_management_app/core/errors/exceptions.dart';
 import 'package:task_management_app/core/errors/failures.dart';
 import 'package:task_management_app/core/models/user_model.dart';
 import 'package:task_management_app/core/services/firebase/services/auth_services.dart';
+import 'package:task_management_app/core/utils/constant/sentence/firebase_storage_constant.dart';
 import 'package:task_management_app/core/utils/constant/sentence/sentence.dart';
 import 'package:task_management_app/features/auth/data/repos/auth_repo.dart';
 import '../../../../core/services/firebase/services/database_services.dart';
@@ -20,7 +21,7 @@ class AuthRepoImpl implements AuthRepo {
       var uid = await authServices.createUserWithEmailAndPassword(emailAddress: userModel.email!, password: password);
       userModel.id = uid;
       await authServices.sendEmailVerification();
-      String imageUrl = await databaseServices.uploadFileInDatabase(file:file,pathTheFile: "${userModel.email!}/images/",fileName: "person_image");
+      String imageUrl = await databaseServices.uploadFileInDatabase(file:file,pathTheFile: FirebaseStorageConstant.getPathTheImage(email: userModel.email!, folderName: FirebaseStorageConstant.person),fileName: FirebaseStorageConstant.userImageFileName);
       userModel.imageUrl = imageUrl;
       await databaseServices.createUser(userJson: userModel.toJson(),collectionName: "users");
       return right(userModel);
