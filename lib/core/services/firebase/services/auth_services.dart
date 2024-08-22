@@ -1,4 +1,3 @@
-
 import '../../../models/user_model.dart';
 
 abstract class AuthServices{
@@ -8,5 +7,5 @@ abstract class AuthServices{
     Future<UserModel?> signInWithGoogle();
     Future<String?> createUserWithEmailAndPassword({required String emailAddress,required String password});
     Future<void> signOut();
-
+    Future<void>changePassword({required String newPassword});
 }

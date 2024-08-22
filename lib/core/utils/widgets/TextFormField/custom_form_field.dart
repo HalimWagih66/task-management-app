@@ -53,6 +53,7 @@ class CustomTextFormField extends StatelessWidget {
           keyboardType: textInputType,
           textInputAction: textInputAction,
           obscureText: obscureText,
+          cursorColor: primaryColorApp,
           controller: inputField,
           validator: functionValidate,
           maxLines: maxLines,

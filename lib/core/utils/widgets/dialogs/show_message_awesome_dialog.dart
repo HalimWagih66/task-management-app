@@ -14,7 +14,6 @@ void showMessageWithAwesomeDialog({
   void Function()? btnCancelOnPress,
   bool dismissOnTouchOutside = false,
     String? cancelActionName,
-    Function? cancelAction,
   }) {
     AwesomeDialog(
       dismissOnTouchOutside: dismissOnTouchOutside,

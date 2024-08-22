@@ -87,6 +87,19 @@ class FirebaseAuthServices implements AuthServices{
       }
     }
   }
+  @override
+  Future<void>changePassword({required String newPassword})async{
+    try {
+      await FirebaseAuth.instance.currentUser?.updatePassword(newPassword);
+    } on FirebaseAuthException catch (e) {
+      if(e.code == "requires-recent-login"){
+        throw CustomException(errorMessage: "Log out, then log in, then re-enter your password.");
+      }
+      throw CustomException(errorMessage: e.code);
+    }catch(e){
+      throw CustomException(errorMessage: Sentence.somethingWentWrongPleaseTryAgain);
+    }
+  }
 
   @override
   Future<void> signOut() async{

@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_management_app/core/services/firebase/services/database_services.dart';
 import 'package:task_management_app/core/services/service_locator.dart';
-import 'package:task_management_app/core/utils/functions/validate/validate_inputs_from_text_valid.dart';
 import 'package:task_management_app/core/utils/theme/constant_colors.dart';
-import 'package:task_management_app/core/utils/widgets/TextFormField/custom_form_field.dart';
 import 'package:task_management_app/core/utils/widgets/buttons/custom_elevated_button.dart';
+import 'package:task_management_app/features/profile/data/profile_repo.dart';
 import 'package:task_management_app/features/profile/presentation/home_layout_profile/cubits/home_layout_profile_cubit.dart';
 import 'package:task_management_app/features/profile/presentation/home_layout_profile/view/taps/edit_profile/manager/change_image_cubit/change_image_cubit.dart';
+import 'package:task_management_app/features/profile/presentation/home_layout_profile/view/taps/edit_profile/manager/edit_profile_form/edit_profile_form_cubit.dart';
+import 'package:task_management_app/features/profile/presentation/home_layout_profile/view/taps/edit_profile/view/widgets/custom_display_save_changes_for_edit_profile.dart';
 import 'package:task_management_app/features/profile/presentation/home_layout_profile/view/taps/edit_profile/view/widgets/custom_picked_image_for_change_body.dart';
-import 'package:task_management_app/material_application.dart';
+import 'package:task_management_app/features/profile/presentation/home_layout_profile/view/taps/edit_profile/view/widgets/form_edit_profile.dart';
 import '../../../../../../../../core/utils/constant/sentence/firebase_storage_constant.dart';
 import '../../../../../../../../core/utils/widgets/custom_app_bar.dart';
 import '../../../../../../../home_layout/presentation/manager/user_model_cubit/user_model_cubit.dart';
 
-class EditProfileView extends StatelessWidget {
+class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
+
+  @override
+  State<EditProfileView> createState() => _EditProfileViewState();
+}
+
+class _EditProfileViewState extends State<EditProfileView> {
+  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +45,7 @@ class EditProfileView extends StatelessWidget {
               ),
               BlocProvider(
                 create: (context) => ChangeImageCubit(
-                    databaseServices: getIt.get<DatabaseServices>()),
+                    profileRepo: getIt.get<ProfileRepo>()),
                 child: CustomPickedImageForChangeBody(
                   imageUrl: userModel!.imageUrl!,
                   pathTheFile: FirebaseStorageConstant.getPathTheImage(
@@ -51,49 +58,30 @@ class EditProfileView extends StatelessWidget {
               const Spacer(
                 flex: 2,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              BlocProvider(
+                create: (context) =>
+                    EditProfileFormCubit(profileRepo: getIt.get<ProfileRepo>()),
                 child: Column(
                   children: [
-                    CustomTextFormField(
-                      contentPadding: 10,
-                      textLabel: "Name",
-                      initialValue: userModel.name,
-                      functionValidate: (name) {
-                        return ValidateInputsFromTextValid.validateNameValid(
-                            name);
-                      },
+                    Form(
+                      key: formKey,
+                      child: FormEditProfile(userModel: userModel),
                     ),
                     const SizedBox(height: 25),
-                    CustomTextFormField(
-                      contentPadding: 10,
-                      textLabel: "Email",
-                      enabled: false,
-                      initialValue: userModel.email,
-                      functionValidate: (name) {
-                        return ValidateInputsFromTextValid.validateNameValid(
-                            name);
-                      },
-                    ),
-                    const SizedBox(height: 25),
-                    CustomTextFormField(
-                      contentPadding: 10,
-                      textLabel: "Password",
-                      initialValue: "******",
-                      obscureText: true,
-                      functionValidate: (name) {
-                        return ValidateInputsFromTextValid.validateNameValid(name);
-                      },
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: CustomElevatedButton(
+                        background: primaryColorApp,
+                        child: const CustomDisplaySaveChangesForEditProfile(),
+                        onPressed: () {
+                          if(formKey.currentState!.validate()) {
+                            print("validate form");
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 25),
-              CustomElevatedButton(
-                background: primaryColorApp,
-                child: Text("Save Changes",
-                    style: textThemeApp.font18SecondPrimaryBold),
-                onPressed: () {},
               ),
               const SizedBox(height: 10)
             ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_management_app/features/home_layout/presentation/manager/user_model_cubit/user_model_cubit.dart';
-import 'package:task_management_app/features/home_layout/presentation/manager/user_model_cubit/user_model_state.dart';
 import '../../manager/home_layout_cubit/home_layout_cubit.dart';
 
 class HomeView extends StatefulWidget {
@@ -31,9 +30,7 @@ class _HomeViewState extends State<HomeView> {
         itemCount: homeLayoutViewModel.taps.length,
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) =>
-            BlocBuilder<UserModelCubit, UserModelState>(
-          builder: (context, state) => homeLayoutViewModel.taps[index],
-        ),
+            homeLayoutViewModel.taps[index],
       ),
     );
   }

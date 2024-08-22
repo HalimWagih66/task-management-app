@@ -29,7 +29,6 @@ class UserModelCubit extends Cubit<UserModelState>{
   void listenOnUserModel(){
     FirebaseFirestore.instance.collection("users").doc(userModel?.id).snapshots().listen((event) {
       userModel = UserModel.fromFJson(event.data());
-      emit(UserModelSuccess());
     },);
   }
 }

@@ -33,7 +33,7 @@ class FirebaseDataBase implements DatabaseServices{
     return docSnapshot.data();
   }
    @override
-  Future<void> editFieldInUser({required String uid,required String collectionName, required Map<String, dynamic> newData})async{
+  Future<void> editFieldInUserInDatabase({required String uid,required String collectionName, required Map<String, dynamic> newData})async{
     var doc = getUsersCollection(collectionName: collectionName).doc(uid);
     await doc.update(newData);
   }

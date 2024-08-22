@@ -12,6 +12,12 @@ final class ImagePickerSuccess extends ImagePickerState {
 
 final class ImagePickerLoading extends ImagePickerState {}
 
+final class ImagePickerFailure extends ImagePickerState {
+  String errorMessage;
+  ImagePickerFailure({required this.errorMessage});
+}
+
+
 final class CheckPickedImageIsNull extends ImagePickerState {}
 
 final class CheckPickedImageIsNotNull extends ImagePickerState {}
