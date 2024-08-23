@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_management_app/features/home_layout/presentation/manager/user_model_cubit/user_model_state.dart';
@@ -26,9 +25,9 @@ class UserModelCubit extends Cubit<UserModelState>{
       emit(UserModelSuccess());
     },);
   }
-  void listenOnUserModel(){
-    FirebaseFirestore.instance.collection("users").doc(userModel?.id).snapshots().listen((event) {
-      userModel = UserModel.fromFJson(event.data());
-    },);
+  void listenIngUserModel(){
+    homeLayoutRepo.listenIngUserModel(collection: "users", uid: userModel!.id!, executeFunction: (newData){
+      userModel = UserModel.fromFJson(newData);
+    });
   }
 }
