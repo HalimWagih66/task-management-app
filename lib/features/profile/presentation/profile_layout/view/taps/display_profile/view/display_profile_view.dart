@@ -5,8 +5,9 @@ import 'package:task_management_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:task_management_app/core/utils/widgets/display_images/custom_cached_network_image.dart';
 import 'package:task_management_app/core/utils/widgets/display_images/custom_circle_image.dart';
 import 'package:task_management_app/features/home_layout/presentation/manager/user_model_cubit/user_model_cubit.dart';
-import 'package:task_management_app/features/profile/presentation/home_layout_profile/cubits/home_layout_profile_cubit.dart';
-import 'package:task_management_app/features/profile/presentation/home_layout_profile/view/taps/display_profile/view/widgets/custom_view_field.dart';
+import 'package:task_management_app/features/profile/presentation/profile_layout/view/taps/display_profile/view/widgets/custom_view_field.dart';
+
+import '../../../../cubits/home_layout_profile_cubit.dart';
 
 class DisplayProfileView extends StatelessWidget {
   const DisplayProfileView({super.key});

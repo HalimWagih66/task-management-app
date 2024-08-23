@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_management_app/features/profile/presentation/home_layout_profile/cubits/home_layout_profile_cubit.dart';
 import 'package:task_management_app/material_application.dart';
+
+import '../../../../../cubits/home_layout_profile_cubit.dart';
 
 
 class CustomViewField extends StatelessWidget {
