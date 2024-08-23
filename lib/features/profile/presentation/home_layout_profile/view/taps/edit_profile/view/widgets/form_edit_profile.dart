@@ -2,10 +2,10 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_management_app/core/utils/widgets/dialogs/show_message_awesome_dialog.dart';
+import 'package:task_management_app/features/profile/presentation/home_layout_profile/view/taps/edit_profile/manager/edit_profile_form/edit_profile_form_cubit.dart';
 import '../../../../../../../../../core/models/user_model.dart';
 import '../../../../../../../../../core/utils/functions/validate/validate_inputs_from_text_valid.dart';
 import '../../../../../../../../../core/utils/widgets/TextFormField/custom_form_field.dart';
-import '../../manager/edit_profile_form/edit_profile_form_cubit.dart';
 
 class FormEditProfile extends StatelessWidget {
   const FormEditProfile({
