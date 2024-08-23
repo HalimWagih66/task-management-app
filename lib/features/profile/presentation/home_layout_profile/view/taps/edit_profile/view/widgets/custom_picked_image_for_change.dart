@@ -7,9 +7,9 @@ import 'package:task_management_app/core/utils/widgets/dialogs/show_message_with
 import 'package:task_management_app/core/utils/widgets/display_images/custom_cached_network_image.dart';
 import 'package:task_management_app/core/utils/widgets/loading/custom_hexagon_Dots_loading.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/image_picker_cubit/image_picker_cubit.dart';
+import 'package:task_management_app/features/profile/presentation/home_layout_profile/view/taps/edit_profile/manager/change_image_cubit/change_image_cubit.dart';
 import 'package:task_management_app/material_application.dart';
 import '../../../../../../../../../core/utils/widgets/display_images/custom_circle_image.dart';
-import '../../manager/change_image_cubit/change_image_cubit.dart';
 
 class CustomPickedImageForChange extends StatelessWidget {
   const CustomPickedImageForChange({

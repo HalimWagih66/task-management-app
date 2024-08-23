@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_management_app/features/profile/presentation/home_layout_profile/cubits/home_layout_profile_cubit.dart';
 
-import '../cubits/home_layout_profile_cubit.dart';
-
-class ProfileLayoutView extends StatelessWidget {
-  const ProfileLayoutView({super.key});
+class HomeLayoutProfileView extends StatelessWidget {
+  const HomeLayoutProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
