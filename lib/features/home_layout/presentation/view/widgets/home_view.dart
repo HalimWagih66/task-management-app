@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_management_app/features/home_layout/presentation/manager/user_model_cubit/user_model_cubit.dart';
+
 import '../../manager/home_layout_cubit/home_layout_cubit.dart';
+import '../../manager/user_model_cubit/user_model_cubit.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -14,7 +15,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<UserModelCubit>(context).listenOnUserModel();
+    BlocProvider.of<UserModelCubit>(context).listenIngUserModel();
   }
 
   @override
