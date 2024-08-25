@@ -14,10 +14,8 @@ class HomeLayoutProfileView extends StatelessWidget {
           return PageView.builder(
             controller: BlocProvider.of<HomeLayoutProfileCubit>(context).pageController,
               physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) =>
-                  BlocProvider.of<HomeLayoutProfileCubit>(context).taps[index],
-              itemCount:
-                  BlocProvider.of<HomeLayoutProfileCubit>(context).taps.length);
+              itemBuilder: (context, index) => BlocProvider.of<HomeLayoutProfileCubit>(context).taps[index],
+              itemCount: BlocProvider.of<HomeLayoutProfileCubit>(context).taps.length);
         },
       ),
     );

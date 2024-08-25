@@ -22,6 +22,8 @@ class DisplayProfileView extends StatelessWidget {
             BlocProvider.of<HomeLayoutProfileCubit>(context).animateToPage(1);
           },
           child: CustomCircleImage(
+            firstRadios: 80.w,
+            secondRadios: 77.h,
             child: CustomCachedNetworkImage(
               urlImage: userModel!.imageUrl!,
               height: 250.w,

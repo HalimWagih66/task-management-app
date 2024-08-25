@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_management_app/core/utils/theme/constant_colors.dart';
 class CustomCircleImage extends StatelessWidget {
-  const CustomCircleImage( {super.key, required this.child,});
+   const CustomCircleImage( {super.key, required this.child, required this.firstRadios, required this.secondRadios,});
   final Widget child;
+  final double firstRadios;
+  final double secondRadios;
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
       backgroundColor: primaryColorApp,
-      radius: 80.w,
+      radius: firstRadios,
       child: CircleAvatar(
-        radius: 77.w,
+        radius: secondRadios,
         backgroundColor: Colors.white,
         child: child
       ),

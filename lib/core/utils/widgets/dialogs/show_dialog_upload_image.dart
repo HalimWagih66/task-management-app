@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Future<void> showDialogUploadImage({required BuildContext context,required Function onPressedCamera,required Function onPressedGallery}) {
+Future<void> showDialogUploadImage({required BuildContext context,required void Function()? onPressedCamera,required void Function()? onPressedGallery}) {
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
@@ -9,9 +9,8 @@ Future<void> showDialogUploadImage({required BuildContext context,required Funct
           content: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(onPressed: ()async=> await onPressedCamera()
-              , icon: const Icon(Icons.camera_alt,size: 50),),
-              IconButton(onPressed: ()async =>await onPressedGallery(),
+              IconButton(onPressed: onPressedCamera, icon: const Icon(Icons.camera_alt,size: 50),),
+              IconButton(onPressed: onPressedGallery,
                 icon: const Icon(Icons.image_sharp,size: 50,),),
             ],
           )

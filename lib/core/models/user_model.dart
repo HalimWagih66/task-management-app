@@ -2,6 +2,7 @@ class UserModel{
   String? name;
   String? email;
   String? imageUrl;
+  static const collectionName = "users";
   String? id;
   UserModel({this.name,this.email,this.imageUrl,this.id});
 
