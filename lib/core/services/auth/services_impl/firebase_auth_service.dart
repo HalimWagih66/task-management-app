@@ -2,8 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:task_management_app/core/errors/exceptions.dart';
 import 'package:task_management_app/core/models/user_model.dart';
-import 'package:task_management_app/core/services/firebase/services/auth_services.dart';
 import 'package:task_management_app/core/utils/constant/sentence/sentence.dart';
+
+import '../services/auth_services.dart';
 class FirebaseAuthServices implements AuthServices{
   @override
   Future<String?> createUserWithEmailAndPassword({required String emailAddress,required String password})async {

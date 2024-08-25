@@ -4,11 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:task_management_app/core/errors/exceptions.dart';
 import 'package:task_management_app/core/errors/failures.dart';
 import 'package:task_management_app/core/models/user_model.dart';
-import 'package:task_management_app/core/services/firebase/services/auth_services.dart';
 import 'package:task_management_app/core/utils/constant/firebase/firebase_storage_constant.dart';
 import 'package:task_management_app/core/utils/constant/sentence/sentence.dart';
 import 'package:task_management_app/features/auth/data/repos/auth_repo.dart';
-import '../../../../core/services/firebase/services/database_services.dart';
+import '../../../../core/services/auth/services/auth_services.dart';
+import '../../../../core/services/database/database_services/database_services.dart';
 
 class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl({required this.databaseServices,required this.authServices});
@@ -21,9 +21,9 @@ class AuthRepoImpl implements AuthRepo {
       var uid = await authServices.createUserWithEmailAndPassword(emailAddress: userModel.email!, password: password);
       userModel.id = uid;
       await authServices.sendEmailVerification();
-      String imageUrl = await databaseServices.uploadFileInDatabase(file:file,pathTheFile: FirebaseStorageConstant.getPathTheImage(email: userModel.email!, folderName: FirebaseStorageConstant.person),fileName: FirebaseStorageConstant.userImageFileName);
+      String imageUrl = await databaseServices.storageDatabase.uploadFileInDatabase(file:file,pathTheFile: FirebaseStorageConstant.getPathTheImage(email: userModel.email!, folderName: FirebaseStorageConstant.person),fileName: FirebaseStorageConstant.userImageFileName);
       userModel.imageUrl = imageUrl;
-      await databaseServices.createUser(userJson: userModel.toJson(),collectionName: "users");
+      await databaseServices.usersDatabase.createUserInDatabase(userModel: userModel,collectionName: "users");
       return right(userModel);
     } on CustomException catch (e) {
       return left(ServerFailure(e.errorMessage));
@@ -43,7 +43,7 @@ class AuthRepoImpl implements AuthRepo {
             email: user.email,
             imageUrl: user.imageUrl
         );
-        await databaseServices.createUser(userJson: userModel.toJson(), collectionName: "users");
+        await databaseServices.usersDatabase.createUserInDatabase(userModel: userModel, collectionName: "users");
         return right(userModel);
       }else{
         return left(UserFailure("Registration is not complete."));
