@@ -11,7 +11,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return  ClipOval(
       child: CachedNetworkImage(
-        imageUrl: urlImage == "L"?"https://static.thenounproject.com/png/1041139-200.png":urlImage,
+        imageUrl: urlImage,
         placeholder: (context, url) => const CustomHexagonDotsLoading(color: primaryColorApp),
         errorWidget: (context, url, error) => const Icon(Icons.error),
         fit: BoxFit.cover,
