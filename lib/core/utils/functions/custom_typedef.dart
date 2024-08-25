@@ -1,1 +1,1 @@
-typedef EventFunction =  void Function(Map<String, dynamic>? event);
+typedef EventFunction =  void Function(dynamic event);

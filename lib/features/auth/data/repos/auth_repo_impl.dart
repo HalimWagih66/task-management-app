@@ -5,7 +5,7 @@ import 'package:task_management_app/core/errors/exceptions.dart';
 import 'package:task_management_app/core/errors/failures.dart';
 import 'package:task_management_app/core/models/user_model.dart';
 import 'package:task_management_app/core/services/firebase/services/auth_services.dart';
-import 'package:task_management_app/core/utils/constant/sentence/firebase_storage_constant.dart';
+import 'package:task_management_app/core/utils/constant/firebase/firebase_storage_constant.dart';
 import 'package:task_management_app/core/utils/constant/sentence/sentence.dart';
 import 'package:task_management_app/features/auth/data/repos/auth_repo.dart';
 import '../../../../core/services/firebase/services/database_services.dart';

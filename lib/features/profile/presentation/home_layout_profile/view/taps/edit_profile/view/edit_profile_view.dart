@@ -10,7 +10,7 @@ import 'package:task_management_app/features/profile/presentation/home_layout_pr
 import 'package:task_management_app/features/profile/presentation/home_layout_profile/view/taps/edit_profile/view/widgets/custom_display_save_changes_for_edit_profile.dart';
 import 'package:task_management_app/features/profile/presentation/home_layout_profile/view/taps/edit_profile/view/widgets/custom_picked_image_for_change_body.dart';
 import 'package:task_management_app/features/profile/presentation/home_layout_profile/view/taps/edit_profile/view/widgets/form_edit_profile.dart';
-import '../../../../../../../../core/utils/constant/sentence/firebase_storage_constant.dart';
+import '../../../../../../../../core/utils/constant/firebase/firebase_storage_constant.dart';
 import '../../../../../../../../core/utils/widgets/custom_app_bar.dart';
 import '../../../../../../../home_layout/presentation/manager/user_model_cubit/user_model_cubit.dart';
 

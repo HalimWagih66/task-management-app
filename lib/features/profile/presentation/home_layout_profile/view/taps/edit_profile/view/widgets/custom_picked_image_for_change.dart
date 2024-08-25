@@ -28,6 +28,8 @@ class CustomPickedImageForChange extends StatelessWidget {
       highlightColor: Colors.transparent,
       splashColor: Colors.transparent,
       child: CustomCircleImage(
+        secondRadios: 80.w,
+        firstRadios: 77.w,
         child: ClipOval(
           child: BlocConsumer<ChangeImageCubit, ImagePickerState>(
             listener: (context, state) {
@@ -40,6 +42,8 @@ class CustomPickedImageForChange extends StatelessWidget {
             builder: (context, state) {
               if (state is ImagePickerSuccess) {
                 return CustomCircleImage(
+                  firstRadios: 77,
+                  secondRadios: 80,
                   child: ClipOval(
                     child: Image.network(
                       state.imageUrl!,
@@ -52,6 +56,8 @@ class CustomPickedImageForChange extends StatelessWidget {
                 return const CustomHexagonDotsLoading(color: primaryColorApp);
               }
               return CustomCircleImage(
+                firstRadios: 77,
+                secondRadios: 80,
                 child: CustomCachedNetworkImage(
                   urlImage:imageUrl,
                   height: 222.h,

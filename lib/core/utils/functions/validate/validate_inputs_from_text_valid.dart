@@ -36,4 +36,13 @@ class ValidateInputsFromTextValid{
     }
     return null;
   }
+  static String? validateCategoryTitle(String? input){
+    if (input == null || input.trim().isEmpty == true) {
+      return "Please enter your name";
+    }
+    else if (input.length < 2) {
+      return "Please enter a category title valid";
+    }
+    return null;
+  }
 }

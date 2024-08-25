@@ -35,6 +35,8 @@ class CustomPickedImage extends StatelessWidget {
             return Column(
               children: [
                 CustomCircleImage(
+                  firstRadios: 77,
+                  secondRadios: 80,
                 child: CustomCircleImageForFileImage(imageProvider: imagePickerCubit.pickedImage == null?null:FileImage(imagePickerCubit.pickedImage!))
                 ),
                 const SizedBox(height: 20),
@@ -43,6 +45,8 @@ class CustomPickedImage extends StatelessWidget {
             );
           }
           return CustomCircleImage(
+            firstRadios: 77,
+            secondRadios: 80,
             child: CustomCircleImageForFileImage(
                 imageProvider: imagePickerCubit.pickedImage == null?null:FileImage(imagePickerCubit.pickedImage!)
             ),

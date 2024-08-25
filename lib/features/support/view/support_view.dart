@@ -25,7 +25,7 @@ class _SupportViewState extends State<SupportView> implements SupportNavigator{
   Widget build(BuildContext context) {
     return  Column(
       children: [
-        CustomAppBar(title: AppLocalizations.of(context)!.contact_us,backgroundColor: Colors.white),
+        CustomAppBar(title: AppLocalizations.of(context)!.contact_us),
         ItemContact(title: AppLocalizations.of(context)!.call, icon: Icons.call, onTap: ()async{
           await supportViewModel.callPhoneNumber();
         },),
