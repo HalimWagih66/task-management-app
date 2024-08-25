@@ -4,8 +4,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:task_management_app/core/errors/exceptions.dart';
 import 'package:task_management_app/core/models/user_model.dart';
 import 'package:task_management_app/core/services/firebase/services/database_services.dart';
-import 'package:task_management_app/core/utils/functions/custom_typedef.dart';
 import 'package:task_management_app/features/tasks_management/data/models/category_model.dart';
+
+import '../../../utils/functions/custom_typedef.dart';
 
 class FirebaseDataBase implements DatabaseServices{
    CollectionReference<UserModel> getUsersCollection({required String collectionName}){

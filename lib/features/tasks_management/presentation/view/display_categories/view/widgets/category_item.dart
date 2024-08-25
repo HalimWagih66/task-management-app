@@ -64,7 +64,7 @@ class _CategoryItemState extends State<CategoryItem> {
                   firstRadios: 33.w,
                   secondRadios: 33.w,
                   child: CustomCachedNetworkImage(
-                      urlImage: widget.categoryModel.categoryImage??"L",
+                      urlImage: widget.categoryModel.categoryImage??"https://firebasestorage.googleapis.com/v0/b/task-management-952ef.appspot.com/o/images%2Fblack%20white%20Thunder%20logo.png?alt=media&token=fd2a9764-2da5-4381-800b-0da72edd0336",
                       height: 70.h),
                 ),
                 Expanded(
