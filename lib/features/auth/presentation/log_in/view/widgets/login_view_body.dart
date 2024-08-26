@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_management_app/core/utils/widgets/dialogs/show_dialog_for_reset_password.dart';
 import 'package:task_management_app/features/auth/presentation/log_in/manager/log_in_bloc/log_in_bloc.dart';
-import '../../../../../../core/utils/widgets/user_question_about_registration.dart';
+import '../../../../../../core/utils/widgets/questions/user_question_about_registration.dart';
 import '../../../../../../material_application.dart';
 import '../../../sign_up/presentation/view/sign_up_view.dart';
 import 'display_login_methods.dart';

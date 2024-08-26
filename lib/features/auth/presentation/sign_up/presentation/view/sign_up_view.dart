@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_management_app/core/utils/widgets/custom_app_bar.dart';
+import 'package:task_management_app/core/utils/widgets/app_bar/custom_app_bar.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/sign_up_bloc/sign_up_bloc.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/view/widgets/sign_up_view_body.dart';
 import '../../../../../../core/services/service_locator.dart';
+import '../../../../../../core/utils/cubits/image_picker_cubit/image_picker_cubit.dart';
 import '../../../../data/repos/auth_repo.dart';
-import '../manager/image_picker_cubit/image_picker_cubit.dart';
 
 class SignUpView extends StatelessWidget  {
   const SignUpView({super.key});

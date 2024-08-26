@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:task_management_app/features/auth/presentation/log_in/view/login_view.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/view/sign_up_view.dart';
 import '../../../../core/utils/widgets/buttons/animated_button.dart';
-import '../../../../core/utils/widgets/user_question_about_registration.dart';
+import '../../../../core/utils/widgets/questions/user_question_about_registration.dart';
 import '../../../../material_application.dart';
 import 'display_image_on_boarding.dart';
 

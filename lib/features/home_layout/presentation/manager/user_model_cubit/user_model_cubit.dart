@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_management_app/features/home_layout/presentation/manager/user_model_cubit/user_model_state.dart';
 import '../../../../../core/models/user_model.dart';
@@ -6,11 +5,8 @@ import '../../../data/home_layout_repo.dart';
 
 class UserModelCubit extends Cubit<UserModelState>{
   HomeLayoutRepo homeLayoutRepo;
-  UserModelCubit({required this.homeLayoutRepo}):super(UserModelInitial()){
-    pageController = PageController();
-  }
+  UserModelCubit({required this.homeLayoutRepo}):super(UserModelInitial());
 
-  late PageController pageController;
   UserModel? userModel;
 
 
@@ -25,9 +21,9 @@ class UserModelCubit extends Cubit<UserModelState>{
       emit(UserModelSuccess());
     },);
   }
-  void listenIngUserModel(){
-    homeLayoutRepo.listenIngUserModel(collection: "users", uid: userModel!.id!, executeFunction: (newData){
-      userModel = UserModel.fromFJson(newData);
+  void listenIngUserModelFromDatabase(){
+    homeLayoutRepo.listenIngUserModelInDatabase(uid: userModel!.id!, executeFunction: (newData){
+      userModel = newData;
     });
   }
 }

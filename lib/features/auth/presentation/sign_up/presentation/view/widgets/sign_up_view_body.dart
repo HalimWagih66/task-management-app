@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_management_app/features/auth/presentation/log_in/view/login_view.dart';
-import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/image_picker_cubit/image_picker_cubit.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/sign_up_bloc/sign_up_bloc.dart';
-import '../../../../../../../core/utils/widgets/user_question_about_registration.dart';
+import '../../../../../../../core/utils/cubits/image_picker_cubit/image_picker_cubit.dart';
+import '../../../../../../../core/utils/widgets/display_images/custom_picked_image_for_add_image.dart';
+import '../../../../../../../core/utils/widgets/questions/user_question_about_registration.dart';
 import '../../../../../../../material_application.dart';
-import 'custom_picked_image.dart';
 import 'display_registration_methods.dart';
 import 'form_sign_up.dart';
 
@@ -32,7 +32,9 @@ class SignUpViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const CustomPickedImage(),
+                CustomPickedImageForAddImage(caseImagePickerSuccess: (){
+                  BlocProvider.of<SignUpBloc>(context).pickedImage = BlocProvider.of<ImagePickerCubit>(context).pickedImage;
+                }),
                 const SizedBox(height: 25),
                 Form(
                   key: formKey,
@@ -41,9 +43,9 @@ class SignUpViewBody extends StatelessWidget {
                 const SizedBox(height: 25),
                 DisplayRegistrationMethods(
                   onPressedSigInWithEmail: () {
-                    BlocProvider.of<ImagePickerCubit>(context).checkPickedImageNullOrNo();
+                    BlocProvider.of<ImagePickerCubit>(context).checkPickImageNullOrNot();
                     if(formKey.currentState!.validate()){
-                      if(BlocProvider.of<ImagePickerCubit>(context).pickedImage != null){
+                      if(BlocProvider.of<SignUpBloc>(context).pickedImage != null){
                         BlocProvider.of<SignUpBloc>(context).add(SignUpWithEmailAndPassword());
                       }
                     }

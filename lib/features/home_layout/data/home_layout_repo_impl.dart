@@ -1,11 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:task_management_app/core/services/firebase/services/auth_services.dart';
-import '../../../core/errors/exceptions.dart';
+import '../../../core/errors/exceptions/exceptions.dart';
 import '../../../core/errors/failures.dart';
 import '../../../core/models/user_model.dart';
-import '../../../core/services/firebase/services/database_services.dart';
+import '../../../core/services/auth/services/auth_services.dart';
+import '../../../core/services/database/database_services/database_services.dart';
 import '../../../core/utils/functions/custom_typedef.dart';
 import 'home_layout_repo.dart';
 class HomeLayoutRepoImpl implements HomeLayoutRepo{
@@ -15,7 +14,7 @@ class HomeLayoutRepoImpl implements HomeLayoutRepo{
   @override
   Future<Either<Failure, UserModel>> fetchUserModel({required String uid}) async{
     try {
-      UserModel? userModel = await databaseServices.getUser(uid: uid, collectionName: "users");
+      UserModel? userModel = await databaseServices.usersDatabase.getUserFromDatabase(uid: uid);
       if(userModel == null){
         UserModel user = UserModel(
           name: FirebaseAuth.instance.currentUser!.displayName,
@@ -23,7 +22,7 @@ class HomeLayoutRepoImpl implements HomeLayoutRepo{
           email: FirebaseAuth.instance.currentUser!.email,
           imageUrl: FirebaseAuth.instance.currentUser!.photoURL,
         );
-        await databaseServices.createUser(collectionName: "users",userJson: user.toJson());
+        await databaseServices.usersDatabase.createUserInDatabase(userModel: user);
         userModel = user;
       }
       return right(userModel);
@@ -47,10 +46,8 @@ class HomeLayoutRepoImpl implements HomeLayoutRepo{
   }
 
   @override
-  void listenIngUserModel({required String collection,required String uid, required EventFunction executeFunction}) {
-    FirebaseFirestore.instance.collection(collection).doc(uid).snapshots().listen((event) {
-      executeFunction(event.data());
-    },);
+  void listenIngUserModelInDatabase({required String uid, required EventFunction executeFunction}) {
+    databaseServices.usersDatabase.listenIngUserModelInDatabase(uid: uid, executeFunction: executeFunction);
   }
 
 }

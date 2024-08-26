@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../manager/home_layout_cubit/home_layout_cubit.dart';
 import '../../manager/user_model_cubit/user_model_cubit.dart';
 
@@ -15,7 +14,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<UserModelCubit>(context).listenIngUserModel();
+    BlocProvider.of<UserModelCubit>(context).listenIngUserModelFromDatabase();
   }
 
   @override
