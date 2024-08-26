@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:task_management_app/core/errors/exceptions.dart';
 import 'package:task_management_app/core/errors/failures.dart';
 import 'package:task_management_app/core/utils/constant/sentence/sentence.dart';
 import 'package:task_management_app/core/utils/functions/custom_typedef.dart';
 import 'package:task_management_app/features/tasks_management/data/repos/tasks_management_repo.dart';
+import '../../../../core/errors/exceptions/exceptions.dart';
 import '../../../../core/services/database/database_services/database_services.dart';
 import '../models/category_model.dart';
 
@@ -81,6 +81,18 @@ class TasksManagementRepoImpl implements TasksManagementRepo{
       return left(ServerFailure(e.errorMessage));
     } catch(e){
       return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> removeFileFromDatabase({required String uid, required String categoryId,required String fileNme,required String pathTheFile}) async{
+    try {
+      await databaseServices.storageDatabase.removeFileInDatabase(pathTheFile: pathTheFile, fileName: fileNme);
+      return right(true);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(e.toString()));
     }
   }
 

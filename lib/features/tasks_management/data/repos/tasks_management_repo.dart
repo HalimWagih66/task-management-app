@@ -15,6 +15,9 @@ abstract class TasksManagementRepo {
 
   Future<Either<Failure, bool>> deleteCategory({required String uid,required String categoryId});
 
+  Future<Either<Failure, bool>> removeFileFromDatabase({required String uid, required String categoryId,required String fileNme,required String pathTheFile});
+
+
   Future<Either<Failure, bool>> editCategory({required String uid,required String categoryId, required Map<String, dynamic> newData});
 
   Either<Failure, bool> listenIngCollectionCategories({required String uid,required EventFunction executeFunction});

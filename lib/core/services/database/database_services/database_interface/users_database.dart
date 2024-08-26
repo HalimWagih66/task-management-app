@@ -2,13 +2,13 @@ import '../../../../models/user_model.dart';
 import '../../../../utils/functions/custom_typedef.dart';
 
 abstract class UsersDatabase{
-  Future<void> createUserInDatabase({required UserModel userModel,required String collectionName});
+  Future<void> createUserInDatabase({required UserModel userModel});
 
-  Future<void> removeUserFromDatabase({required String uId, required String collectionName});
+  Future<void> removeUserFromDatabase({required String uId});
 
-  Future<UserModel?> getUserFromDatabase({required String uid, required String collectionName});
+  Future<UserModel?> getUserFromDatabase({required String uid});
 
-  void listenIngUserModelInDatabase({required String collection, required String uid,required EventFunction executeFunction});
+  void listenIngUserModelInDatabase({required String uid,required EventFunction executeFunction});
 
   Future<void> modifyAFieldInAUserInADatabase({required String uid, required Map<String, dynamic> newData});
 

@@ -12,7 +12,7 @@ class UsersDatabaseFirestore implements UsersDatabase{
     );
   }
   @override
-  Future<void> createUserInDatabase({required UserModel userModel, required String collectionName})async {
+  Future<void> createUserInDatabase({required UserModel userModel})async {
     var usersCollection = getUsersCollection();
     var doc = usersCollection.doc(userModel.id);
     await doc.set(userModel);
@@ -25,21 +25,21 @@ class UsersDatabaseFirestore implements UsersDatabase{
   }
 
   @override
-  Future<UserModel?> getUserFromDatabase({required String uid, required String collectionName})async {
+  Future<UserModel?> getUserFromDatabase({required String uid})async {
     var doc = getUsersCollection().doc(uid);
     var docSnapshot = await doc.get();
     return docSnapshot.data();
   }
 
   @override
-  void listenIngUserModelInDatabase({required String collection, required String uid, required EventFunction executeFunction}) {
+  void listenIngUserModelInDatabase({required String uid, required EventFunction executeFunction}) {
     getUsersCollection().doc(uid).snapshots().listen((event) {
       executeFunction(event.data());
     },);
   }
 
   @override
-  Future<void> removeUserFromDatabase({required String uId, required String collectionName}) async{
+  Future<void> removeUserFromDatabase({required String uId}) async{
     var usersCollection = getUsersCollection();
     var doc = usersCollection.doc(uId);
     await doc.delete();

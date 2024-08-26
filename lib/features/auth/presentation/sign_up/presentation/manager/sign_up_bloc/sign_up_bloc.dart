@@ -15,7 +15,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<SignUpEvent>((event, emit) async {
       if(event is SignUpWithEmailAndPassword){
         emit(SignUpWithEmailAndPasswordLoading());
-        var result = await authRepo.createUserWithEmailAndPassword(userModel: userModel, file: pickedImage!, password: password!);
+        var result = await authRepo.createAccountWithEmailAndPassword(userModel: userModel, file: pickedImage!, password: password!);
         result.fold((failure) {
           emit(SignUpWithEmailAndPasswordFailure(failure.message));
         }, (userModel) {

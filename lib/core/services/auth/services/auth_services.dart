@@ -5,7 +5,7 @@ abstract class AuthServices{
     Future<String?>loginWithEmailAndPassword({required String emailAddress, required String password});
     Future<void> sendEmailVerification();
     Future<UserModel?> signInWithGoogle();
-    Future<String?> createUserWithEmailAndPassword({required String emailAddress,required String password});
+    Future<String?> createAccountWithEmailAndPassword({required String emailAddress,required String password});
     Future<void> signOut();
     Future<void>changePassword({required String newPassword});
 }
