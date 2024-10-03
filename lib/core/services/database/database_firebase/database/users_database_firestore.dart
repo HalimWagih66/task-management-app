@@ -44,4 +44,5 @@ class UsersDatabaseFirestore implements UsersDatabase{
     var doc = usersCollection.doc(uId);
     await doc.delete();
   }
+
 }

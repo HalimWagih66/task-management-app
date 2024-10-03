@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class CustomSlidable extends StatelessWidget {
-  const CustomSlidable({super.key, required this.child, required this.onPressedDelete, required this.categoryId,required this.onPressedEdit});
+  const CustomSlidable({super.key, required this.child, required this.onPressedDelete,required this.onPressedEdit});
   final Widget child;
   final void Function() onPressedDelete;
-  final String categoryId;
   final void Function() onPressedEdit;
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:task_management_app/core/utils/theme/constant_colors.dart';
+import 'package:task_management_app/core/utils/style/theme/constant_colors.dart';
 import 'package:task_management_app/core/utils/widgets/loading/custom_hexagon_Dots_loading.dart';
 import 'package:task_management_app/features/auth/presentation/log_in/manager/log_in_bloc/log_in_bloc.dart';
 import 'package:task_management_app/core/utils/widgets/buttons/custom_elevated_button.dart';

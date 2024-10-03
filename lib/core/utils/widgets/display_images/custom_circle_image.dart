@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_management_app/core/utils/theme/constant_colors.dart';
+import 'package:task_management_app/core/utils/style/theme/constant_colors.dart';
 class CustomCircleImage extends StatelessWidget {
    const CustomCircleImage( {super.key, required this.child, required this.firstRadios, required this.secondRadios,});
   final Widget child;

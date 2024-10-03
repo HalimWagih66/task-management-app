@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:task_management_app/core/utils/theme/constant_colors.dart';
+import 'package:task_management_app/core/utils/style/theme/constant_colors.dart';
 import 'package:task_management_app/core/utils/widgets/display_images/custom_cached_network_image.dart';
 import 'package:task_management_app/core/utils/widgets/loading/custom_hexagon_Dots_loading.dart';
 import '../../../../../../../../../core/utils/cubits/image_picker_cubit/image_picker_cubit.dart';

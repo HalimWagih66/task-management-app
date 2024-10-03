@@ -1,3 +1,4 @@
+
 sealed class ControlCategoriesState {}
 
 final class DisplayCategoriesInitial extends ControlCategoriesState {}
@@ -54,3 +55,36 @@ final class DeleteCategoryFailure extends ControlCategoriesState {
   final String errorMessage;
   DeleteCategoryFailure({required this.errorMessage});
 }
+
+
+// final class FetchTasksInCategoryFailure extends ControlCategoriesState {
+//   final String errorMessage;
+//   FetchTasksInCategoryFailure({required this.errorMessage});
+// }
+//
+//
+// final class FetchTasksInCategorySuccess extends ControlCategoriesState {
+//   List<TaskModel> tasks;
+//   FetchTasksInCategorySuccess({required this.tasks});
+// }
+//
+//
+//
+// final class FetchTasksInCategoryLoading extends ControlCategoriesState {}
+
+
+// final class FetchTasksUsingFilterInCategoryFailure extends ControlCategoriesState {
+//   final String errorMessage;
+//   FetchTasksUsingFilterInCategoryFailure({required this.errorMessage});
+// }
+//
+//
+// final class FetchTasksUsingFilterInCategorySuccess extends ControlCategoriesState {
+//   List<TaskModel> tasks;
+//   FetchTasksUsingFilterInCategorySuccess({required this.tasks});
+// }
+//
+//
+//
+// final class FetchTasksUsingFilterInCategoryLoading extends ControlCategoriesState {}
+

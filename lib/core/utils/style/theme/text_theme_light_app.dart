@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task_management_app/core/utils/theme/constant_colors.dart';
-import 'package:task_management_app/core/utils/theme/text_theme_app.dart';
+import 'package:task_management_app/core/utils/style/theme/constant_colors.dart';
+import 'package:task_management_app/core/utils/style/theme/text_theme_app.dart';
 
 class TextThemeLightApp implements TextThemeApp{
   @override

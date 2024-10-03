@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../../../core/utils/cubits/image_picker_cubit/image_picker_cubit.dart';
-import '../../../../../../../../core/utils/theme/constant_colors.dart';
+import '../../../../../../../../core/utils/style/theme/constant_colors.dart';
 import '../../../../../../../../core/utils/widgets/buttons/custom_ink_will.dart';
 import '../../../../../../../../core/utils/widgets/display_images/custom_picked_image_for_add_image.dart';
 import '../../manager/display_category_cubit/control_categories_cubit.dart';

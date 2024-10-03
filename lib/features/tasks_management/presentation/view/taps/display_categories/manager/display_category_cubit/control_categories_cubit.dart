@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:task_management_app/core/utils/constant/firebase/firebase_storage_constant.dart';
-
 import '../../../../../../data/models/category_model.dart';
 import '../../../../../../data/repos/tasks_management_repo.dart';
 import 'control_categories_state.dart';
@@ -42,7 +41,7 @@ class ControlCategoriesCubit extends Cubit<ControlCategoriesState> {
   }
   Future<void>uploadCategoryImageForEdit({required String uid, required String imageName,required String categoryId})async {
     emit(EditCategoryLoading(editType: "image"));
-    var result = await tasksManagementRepo.uploadCategoryImage(pathTheFile: FirebaseStorageConstant.getPathTheImage(email: FirebaseAuth.instance.currentUser!.email!, folderName: FirebaseStorageConstant.categories), file: pickImage!, fileName: imageName);
+    var result = await tasksManagementRepo.uploadImageOnDatabase(pathTheFile: FirebaseStorageConstant.getPathTheImage(email: FirebaseAuth.instance.currentUser!.email!, folderName: FirebaseStorageConstant.categories), file: pickImage!, fileName: imageName);
     result.fold((failure) {
       emit(EditCategoryFailure(errorMessage: failure.message));
     }, (imageUrl)async{
@@ -50,7 +49,7 @@ class ControlCategoriesCubit extends Cubit<ControlCategoriesState> {
     },);
   }
   Future<String?>uploadCategoryImageForAdd({required String uid, required String imageName})async {
-    var result = await tasksManagementRepo.uploadCategoryImage(pathTheFile: FirebaseStorageConstant.getPathTheImage(email: FirebaseAuth.instance.currentUser!.email!, folderName: FirebaseStorageConstant.categories), file: pickImage!, fileName: imageName);
+    var result = await tasksManagementRepo.uploadImageOnDatabase(pathTheFile: FirebaseStorageConstant.getPathTheImage(email: FirebaseAuth.instance.currentUser!.email!, folderName: FirebaseStorageConstant.categories), file: pickImage!, fileName: imageName);
     String? photoUrl;
     result.fold((failure) {
       emit(AddCategoryFailure(errorMessage: failure.message));
@@ -63,8 +62,6 @@ class ControlCategoriesCubit extends Cubit<ControlCategoriesState> {
   Future<void> addCategory({required String uid}) async {
     emit(AddCategoryLoading());
     var result = await tasksManagementRepo.addCategory(uid: uid,categoryModel:CategoryModel(
-      numberTasks: 0,
-      completedTasks: 0,
       categoryName: categoryName ,
       categoryImage: null,
     ));
@@ -102,4 +99,22 @@ class ControlCategoriesCubit extends Cubit<ControlCategoriesState> {
       emit(EditCategorySuccess(editType: editType));
     },);
   }
+
+  // void listenToTasksFromTheDatabase({required String categoryId,required String uid, required DateTime dateTime}){
+  //   var result = tasksManagementRepo.listenToTasksFromTheDatabase(categoryId: categoryId, uid: uid, dateTime: dateTime);
+  //   result.fold((failure) {
+  //     emit(FetchTasksInCategoryFailure(errorMessage: failure.message));
+  //   }, (tasks) {
+  //     emit(FetchTasksInCategorySuccess(tasks: tasks));
+  //   },);
+  // }
+  //
+  // void listenToTasksFromTheDatabaseUsingFilter({required String categoryId,required int status,required String uid, required DateTime dateTime}){
+  //   var result = tasksManagementRepo.listenToTasksFromTheDatabaseUsingFilter(categoryId: categoryId, status: status, uid: uid, dateTime: dateTime);
+  //   result.fold((failure) {
+  //     emit(FetchTasksInCategoryFailure(errorMessage: failure.message));
+  //   }, (tasks) {
+  //     emit(FetchTasksInCategorySuccess(tasks: tasks));
+  //   },);
+  // }
 }

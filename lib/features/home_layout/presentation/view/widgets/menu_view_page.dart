@@ -8,7 +8,7 @@ import 'package:task_management_app/core/services/service_locator.dart';
 import 'package:task_management_app/core/utils/widgets/dialogs/show_message_with_snack_bar.dart';
 import 'package:task_management_app/features/auth/presentation/log_in/view/login_view.dart';
 import 'package:task_management_app/features/home_layout/data/home_layout_repo.dart';
-import '../../../../../core/utils/theme/constant_colors.dart';
+import '../../../../../core/utils/style/theme/constant_colors.dart';
 import '../../../../../core/utils/widgets/dialogs/custom_rating.dart';
 import '../../../../../material_application.dart';
 import '../../manager/home_layout_cubit/home_layout_cubit.dart';

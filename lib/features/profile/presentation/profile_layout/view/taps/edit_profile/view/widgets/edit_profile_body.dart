@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../../../../core/utils/cubits/image_picker_cubit/image_picker_cubit.dart';
-import '../../../../../../../../../core/utils/theme/constant_colors.dart';
+import '../../../../../../../../../core/utils/style/theme/constant_colors.dart';
 import '../../../../../../../../../core/utils/widgets/buttons/custom_elevated_button.dart';
 import '../../../../../../../../../core/utils/widgets/dialogs/show_dialog_upload_image.dart';
 import '../../../../../../../../../core/utils/widgets/display_images/custom_picked_image_for_change_image.dart';

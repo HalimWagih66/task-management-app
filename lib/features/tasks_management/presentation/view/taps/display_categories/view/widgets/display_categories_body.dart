@@ -5,7 +5,7 @@ import 'package:task_management_app/core/services/service_locator.dart';
 import 'package:task_management_app/features/tasks_management/data/repos/tasks_management_repo.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:task_management_app/features/tasks_management/presentation/view/taps/display_categories/view/widgets/show_bottom_sheet_add_category.dart';
-import '../../../../../../../../core/utils/theme/constant_colors.dart';
+import '../../../../../../../../core/utils/style/theme/constant_colors.dart';
 import '../../../../../../../../core/utils/widgets/cases/custom_display_error.dart';
 import '../../../../../../../../core/utils/widgets/cases/custom_display_items_is_empty.dart';
 import '../../../../../../../../core/utils/widgets/loading/custom_hexagon_Dots_loading.dart';
@@ -72,7 +72,7 @@ class _DisplayCategoriesBodyState extends State<DisplayCategoriesBody> {
             ],
           );
         } else {
-          return const SizedBox();
+          return const Text("state.");
         }
       },
     );

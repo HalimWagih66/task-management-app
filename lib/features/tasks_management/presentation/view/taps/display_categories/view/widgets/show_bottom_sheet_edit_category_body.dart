@@ -5,7 +5,7 @@ import 'package:task_management_app/core/utils/widgets/dialogs/show_dialog_uploa
 import 'package:task_management_app/features/tasks_management/data/models/category_model.dart';
 import 'package:task_management_app/material_application.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../../../../../../../core/utils/theme/constant_colors.dart';
+import '../../../../../../../../core/utils/style/theme/constant_colors.dart';
 import '../../../../../../../../core/utils/widgets/buttons/custom_ink_will.dart';
 import '../../../../../../../../core/utils/widgets/display_images/custom_picked_image_for_change_image.dart';
 import '../../manager/display_category_cubit/control_categories_cubit.dart';
