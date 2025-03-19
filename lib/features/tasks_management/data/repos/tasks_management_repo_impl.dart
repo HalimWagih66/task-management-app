@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:task_management_app/core/errors/failures.dart';
 import 'package:task_management_app/core/utils/constant/sentence/sentence.dart';
 import 'package:task_management_app/core/utils/functions/custom_typedef.dart';
+import 'package:task_management_app/features/tasks_management/data/models/task_model.dart';
 import 'package:task_management_app/features/tasks_management/data/repos/tasks_management_repo.dart';
 import '../../../../core/errors/exceptions/exceptions.dart';
 import '../../../../core/services/database/database_services/database_services.dart';
@@ -25,7 +26,7 @@ class TasksManagementRepoImpl implements TasksManagementRepo{
   }
 
   @override
-  Future<Either<Failure, String>> uploadCategoryImage({required String pathTheFile, required File file, required String fileName}) async {
+  Future<Either<Failure, String>> uploadImageOnDatabase({required String pathTheFile, required File file, required String fileName}) async {
     try {
       String imageUrl = await databaseServices.storageDatabase.uploadFileInDatabase(pathTheFile: pathTheFile, file: file, fileName: fileName);
       return right(imageUrl);
@@ -96,7 +97,87 @@ class TasksManagementRepoImpl implements TasksManagementRepo{
     }
   }
 
+  @override
+  Future<Either<Failure, String?>> addTaskInDatabase({required String uid, required TaskModel taskModel, required String categoryId})async {
+    try {
+      String? taskID = await databaseServices.tasksDatabase.addTaskInDatabase(uid: uid, taskModel: taskModel, categoryId: categoryId);
+      return right(taskID);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
 
+  @override
+  Future<Either<Failure, bool>> deleteTaskFromDatabase({required String uid, required String categoryId, required String taskID}) async {
+    try {
+      await databaseServices.tasksDatabase.deleteTaskFromDatabase(uid: uid, categoryId: categoryId, taskID: taskID);
+      return right(true);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
 
+  @override
+  Future<Either<Failure, bool>> editFieldsInTaskInDatabase({required String taskId, required String categoryId, required String uid, required Map<String, dynamic> newData}) async {
+    try {
+      await databaseServices.tasksDatabase.editFieldsInTaskInDatabase(taskId: taskId, categoryId: categoryId, uid: uid, newData: newData);
+      return right(true);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
 
+  @override
+  Future<Either<Failure, List<TaskModel>>> fetchTasksByStatus({required String categoryId, required int status, required String uid, required DateTime dateTime}) async {
+    try {
+      List<TaskModel> tasks = await databaseServices.tasksDatabase.fetchTasksByStatus(categoryId: categoryId, status: status, uid: uid, dateTime: dateTime);
+      return right(tasks);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<TaskModel>>> fetchTasksByDate({required String categoryId, required String uid, required DateTime dateTime}) async {
+    try {
+      List<TaskModel> tasks = await databaseServices.tasksDatabase.fetchTasksByDate(categoryId: categoryId, uid: uid, dateTime: dateTime);
+      return right(tasks);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> trackInformationAboutTasks({required String categoryId, required String uid, required DateTime dateTime,required EventFunctionAsync eventFunctionTrackCompletedTasksToday,required EventFunctionAsync eventFunctionTrackTodayTaskCount}) async {
+    try {
+      await databaseServices.tasksDatabase.trackInformationAboutTasks(uid: uid,dateTime: dateTime,categoryId: categoryId,status: 2,eventFunctionTrackCompletedTasksToday: eventFunctionTrackCompletedTasksToday,eventFunctionTrackTodayTaskCount: eventFunctionTrackTodayTaskCount);
+      return right(null);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
+
+  @override
+  Future<Either<Failure, TaskModel?>> fetchASpecificTask({required String uid, required String taskId, required String categoryId}) async {
+    try {
+      TaskModel? taskModel = await databaseServices.tasksDatabase.fetchASpecificTask(taskId: taskId,uid: uid,categoryId: categoryId);
+     return right(taskModel);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
 }

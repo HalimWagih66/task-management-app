@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_management_app/core/utils/theme/constant_colors.dart';
+import 'package:task_management_app/core/utils/style/theme/constant_colors.dart';
 import 'package:task_management_app/features/on_boarding/view/widgets/on_boarding_body.dart';
 
 class OnBoardingView extends StatelessWidget {

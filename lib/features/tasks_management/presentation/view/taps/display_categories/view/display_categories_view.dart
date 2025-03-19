@@ -5,11 +5,13 @@ import 'package:task_management_app/core/utils/widgets/app_bar/custom_app_bar.da
 import 'package:task_management_app/features/home_layout/presentation/manager/user_model_cubit/user_model_cubit.dart';
 import 'package:task_management_app/features/tasks_management/data/repos/tasks_management_repo.dart';
 import 'package:task_management_app/features/tasks_management/presentation/view/taps/display_categories/view/widgets/display_categories_body.dart';
-
+import 'package:task_management_app/features/tasks_management/presentation/view/taps/display_tasks/cubits/control_tasks_cubit/control_tasks_cubit.dart';
 import '../manager/display_category_cubit/control_categories_cubit.dart';
 
 class DisplayCategoriesView extends StatelessWidget {
   const DisplayCategoriesView({super.key});
+
+  @override
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +22,11 @@ class DisplayCategoriesView extends StatelessWidget {
         children: [
           const CustomAppBar(title: "Display Categories"),
           Expanded(
-            child: BlocProvider(
-                create: (context) => ControlCategoriesCubit(tasksManagementRepo: getIt.get<TasksManagementRepo>()),
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (context) => ControlCategoriesCubit(tasksManagementRepo: getIt.get<TasksManagementRepo>())..listenIngCollectionCategories(uid: BlocProvider.of<UserModelCubit>(context).userModel!.id!)),
+                BlocProvider(create: (context) => ControlTasksCubit(tasksManagementRepo: getIt.get<TasksManagementRepo>())),
+              ],
                 child: DisplayCategoriesBody(
                   uid: BlocProvider.of<UserModelCubit>(context).userModel!.id!,
                 ),

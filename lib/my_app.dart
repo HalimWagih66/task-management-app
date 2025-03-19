@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'material_application.dart';
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TaskManagementApp extends StatelessWidget {
+  const TaskManagementApp({super.key});
 
   @override
   Widget build(BuildContext context) {

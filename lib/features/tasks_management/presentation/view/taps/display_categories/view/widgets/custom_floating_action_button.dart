@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../core/utils/theme/constant_colors.dart';
+import '../../../../../../../../core/utils/style/theme/constant_colors.dart';
 import '../../../../../../../../material_application.dart';
 
 
@@ -15,10 +15,11 @@ class CustomFloatingActionButton extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         child: FloatingActionButton(
           backgroundColor: primaryColorApp,
-          onPressed: onPressed,
-          child: IconButton(
-            onPressed: onPressed,
-            icon: Icon(Icons.add, color: textThemeApp.secondPrimaryColor),
+          onPressed: () {
+            onPressed!();
+          },
+          child: Icon(
+             Icons.add, color: textThemeApp.secondPrimaryColor,
           ),
         ),
       ),

@@ -1,19 +1,22 @@
+
 sealed class ControlCategoriesState {}
 
 final class DisplayCategoriesInitial extends ControlCategoriesState {}
 
-final class DisplayCategoriesFailure extends ControlCategoriesState {
+final class CategoriesFailureState extends ControlCategoriesState {
   final String errorMessage;
-  DisplayCategoriesFailure({required this.errorMessage});
+  CategoriesFailureState({required this.errorMessage});
 }
 
-final class DisplayCategoriesSuccess extends ControlCategoriesState {}
+final class CategoriesSuccessState extends ControlCategoriesState {
+  CategoriesSuccessState();
+}
 
-final class DisplayCategoriesLoading extends ControlCategoriesState {}
+final class CategoriesLoadingState extends ControlCategoriesState {}
 
-final class DisplayCategoriesIsEmpty extends ControlCategoriesState {
+final class CategoriesIsEmptyState extends ControlCategoriesState {
   final String title;
-  DisplayCategoriesIsEmpty({required this.title});
+  CategoriesIsEmptyState({required this.title});
 }
 
 
@@ -54,3 +57,36 @@ final class DeleteCategoryFailure extends ControlCategoriesState {
   final String errorMessage;
   DeleteCategoryFailure({required this.errorMessage});
 }
+
+
+// final class FetchTasksInCategoryFailure extends ControlCategoriesState {
+//   final String errorMessage;
+//   FetchTasksInCategoryFailure({required this.errorMessage});
+// }
+//
+//
+// final class FetchTasksInCategorySuccess extends ControlCategoriesState {
+//   List<TaskModel> tasks;
+//   FetchTasksInCategorySuccess({required this.tasks});
+// }
+//
+//
+//
+// final class FetchTasksInCategoryLoading extends ControlCategoriesState {}
+
+
+// final class FetchTasksUsingFilterInCategoryFailure extends ControlCategoriesState {
+//   final String errorMessage;
+//   FetchTasksUsingFilterInCategoryFailure({required this.errorMessage});
+// }
+//
+//
+// final class FetchTasksUsingFilterInCategorySuccess extends ControlCategoriesState {
+//   List<TaskModel> tasks;
+//   FetchTasksUsingFilterInCategorySuccess({required this.tasks});
+// }
+//
+//
+//
+// final class FetchTasksUsingFilterInCategoryLoading extends ControlCategoriesState {}
+

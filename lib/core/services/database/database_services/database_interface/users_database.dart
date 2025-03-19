@@ -11,5 +11,4 @@ abstract class UsersDatabase{
   void listenIngUserModelInDatabase({required String uid,required EventFunction executeFunction});
 
   Future<void> modifyAFieldInAUserInADatabase({required String uid, required Map<String, dynamic> newData});
-
-}
+  }

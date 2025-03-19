@@ -36,7 +36,7 @@ class _SupportViewState extends State<SupportView> implements SupportNavigator{
           await supportViewModel.sms();
         }),
         ItemContact(title: AppLocalizations.of(context)!.whatsapp, icon: FontAwesomeIcons.whatsapp,onTap: ()async{
-          await supportViewModel.sendWhatsappMessage();
+          await supportViewModel.sms();
         },),
         ItemContact(title: AppLocalizations.of(context)!.messenger, icon: FontAwesomeIcons.facebookMessenger,onTap: ()async{
           await supportViewModel.messenger();

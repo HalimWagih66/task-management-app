@@ -26,13 +26,13 @@ class FormEditProfile extends StatelessWidget {
             textLabel: "Name",
             initialValue: userModel?.name,
             functionValidate: (name) {
-               if(ValidateInputsFromTextValid.validateNameValid(name) == null){
+               if(ValidateInputsFromTextValid.validateNameValid(input: name,outPut: "your first name") == null){
                  if(name != userModel?.name){
                    BlocProvider.of<EditProfileFormCubit>(context).editFieldInUserInDatabase(newData: {"name":name}, uid: userModel!.id,editType: "name");
                  }
                  return null;
                }else{
-                 return ValidateInputsFromTextValid.validateNameValid(name);
+                 return ValidateInputsFromTextValid.validateNameValid(input: name,outPut: "your first name");
                }
             },
           ),

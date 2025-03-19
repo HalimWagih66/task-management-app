@@ -1,29 +1,29 @@
 class CategoryModel {
   String? categoryName;
+  int? completeTasksInToday;
+  int? allTasksToday;
   String? categoryImage;
-  int? numberTasks;
   String? categoryId;
-  int? completedTasks;
   static const String collectionName = "Categories";
 
   CategoryModel(
-      {this.completedTasks,this.categoryId, this.categoryName, this.categoryImage, this.numberTasks});
+      {this.categoryId, this.categoryName, this.categoryImage,this.allTasksToday,this.completeTasksInToday});
 
   CategoryModel.fromFireStore(Map<String, dynamic>?data) {
+    allTasksToday = data?["allTasksToday"];
+    completeTasksInToday = data?["completeTasksInToday"];
     categoryImage = data?["categoryImage"];
     categoryName = data?["categoryName"];
-    numberTasks = data?["numberTasks"];
     categoryId = data?["categoryId"];
-    completedTasks = data?["completedTasks"];
   }
 
   Map<String, dynamic> toFireStore() {
     return {
-      "completedTasks":completedTasks,
+      "allTasksToday":allTasksToday,
+      "completeTasksInToday":completeTasksInToday,
       "categoryName": categoryName,
       'categoryImage': categoryImage,
       "categoryId": categoryId,
-      'numberTasks': numberTasks
     };
   }
 }
