@@ -15,10 +15,11 @@ class CustomFloatingActionButton extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         child: FloatingActionButton(
           backgroundColor: primaryColorApp,
-          onPressed: onPressed,
-          child: IconButton(
-            onPressed: onPressed,
-            icon: Icon(Icons.add, color: textThemeApp.secondPrimaryColor),
+          onPressed: () {
+            onPressed!();
+          },
+          child: Icon(
+             Icons.add, color: textThemeApp.secondPrimaryColor,
           ),
         ),
       ),

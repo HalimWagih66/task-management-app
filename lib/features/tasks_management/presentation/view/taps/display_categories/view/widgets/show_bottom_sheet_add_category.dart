@@ -34,7 +34,7 @@ class ShowBottomSheetAddCategory extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 13,
             ),
             BlocProvider(
                 create: (context) => ImagePickerCubit(),

@@ -12,6 +12,8 @@ class DisplayCategoriesView extends StatelessWidget {
   const DisplayCategoriesView({super.key});
 
   @override
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 11.0),
@@ -22,7 +24,7 @@ class DisplayCategoriesView extends StatelessWidget {
           Expanded(
             child: MultiBlocProvider(
               providers: [
-                BlocProvider(create: (context) => ControlCategoriesCubit(tasksManagementRepo: getIt.get<TasksManagementRepo>())),
+                BlocProvider(create: (context) => ControlCategoriesCubit(tasksManagementRepo: getIt.get<TasksManagementRepo>())..listenIngCollectionCategories(uid: BlocProvider.of<UserModelCubit>(context).userModel!.id!)),
                 BlocProvider(create: (context) => ControlTasksCubit(tasksManagementRepo: getIt.get<TasksManagementRepo>())),
               ],
                 child: DisplayCategoriesBody(

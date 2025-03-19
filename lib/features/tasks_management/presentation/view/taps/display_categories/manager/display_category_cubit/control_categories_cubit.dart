@@ -13,30 +13,29 @@ class ControlCategoriesCubit extends Cubit<ControlCategoriesState> {
   List<CategoryModel> categories = [];
   String? categoryName;
   ControlCategoriesCubit({required this.tasksManagementRepo}) : super(DisplayCategoriesInitial());
-  Future<void>fetchCategories(String uid)async {
-    emit(DisplayCategoriesLoading());
+  Future<void> fetchCategories(String uid)async {
+    emit(CategoriesLoadingState());
     var result = await tasksManagementRepo.fetchCategories(uid: uid);
     result.fold((failure) {
-      emit(DisplayCategoriesFailure(errorMessage: failure.message));
+      emit(CategoriesFailureState(errorMessage: failure.message));
     }, (items) {
       if(items.isEmpty){
-        emit(DisplayCategoriesIsEmpty(title: "Categories"));
+        emit(CategoriesIsEmptyState(title: "Categories"));
         return;
       }
-      categories = items;
-      emit(DisplayCategoriesSuccess());
+      emit(CategoriesSuccessState());
     },
     );
   }
-  void listenIngCollectionCategories(String uid)async {
-    emit(DisplayCategoriesLoading());
+  void listenIngCollectionCategories({required String uid})async {
+    emit(CategoriesLoadingState());
     tasksManagementRepo.listenIngCollectionCategories(uid: uid,executeFunction:(items) {
       if(items.isEmpty){
-        emit(DisplayCategoriesIsEmpty(title: "Categories"));
+        emit(CategoriesIsEmptyState(title: "Categories"));
         return;
       }
       categories = items;
-      emit(DisplayCategoriesSuccess());
+      emit(CategoriesSuccessState());
     },);
   }
   Future<void>uploadCategoryImageForEdit({required String uid, required String imageName,required String categoryId})async {
@@ -64,6 +63,8 @@ class ControlCategoriesCubit extends Cubit<ControlCategoriesState> {
     var result = await tasksManagementRepo.addCategory(uid: uid,categoryModel:CategoryModel(
       categoryName: categoryName ,
       categoryImage: null,
+      allTasksToday: 0,
+      completeTasksInToday: 0
     ));
     result.fold((failure) {
       emit(AddCategoryFailure(errorMessage: failure.message));
@@ -99,22 +100,11 @@ class ControlCategoriesCubit extends Cubit<ControlCategoriesState> {
       emit(EditCategorySuccess(editType: editType));
     },);
   }
-
-  // void listenToTasksFromTheDatabase({required String categoryId,required String uid, required DateTime dateTime}){
-  //   var result = tasksManagementRepo.listenToTasksFromTheDatabase(categoryId: categoryId, uid: uid, dateTime: dateTime);
-  //   result.fold((failure) {
-  //     emit(FetchTasksInCategoryFailure(errorMessage: failure.message));
-  //   }, (tasks) {
-  //     emit(FetchTasksInCategorySuccess(tasks: tasks));
-  //   },);
-  // }
-  //
-  // void listenToTasksFromTheDatabaseUsingFilter({required String categoryId,required int status,required String uid, required DateTime dateTime}){
-  //   var result = tasksManagementRepo.listenToTasksFromTheDatabaseUsingFilter(categoryId: categoryId, status: status, uid: uid, dateTime: dateTime);
-  //   result.fold((failure) {
-  //     emit(FetchTasksInCategoryFailure(errorMessage: failure.message));
-  //   }, (tasks) {
-  //     emit(FetchTasksInCategorySuccess(tasks: tasks));
-  //   },);
-  // }
+  Future<void> updateTaskFieldsInTheCategory({required String categoryId, required String uid,required DateTime dateTime}) async {
+    await tasksManagementRepo.trackInformationAboutTasks(categoryId: categoryId, uid: uid, dateTime: dateTime, eventFunctionTrackCompletedTasksToday: (event) async{
+      await tasksManagementRepo.editCategory(uid: uid, categoryId: categoryId, newData: {"completeTasksInToday":event});
+    }, eventFunctionTrackTodayTaskCount: (event)async {
+      await tasksManagementRepo.editCategory(uid: uid, categoryId: categoryId, newData: {"allTasksToday":event});
+    },);
+  }
 }

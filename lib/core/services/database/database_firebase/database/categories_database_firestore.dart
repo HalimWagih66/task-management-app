@@ -3,6 +3,7 @@ import 'package:task_management_app/core/services/database/database_firebase/dat
 import 'package:task_management_app/core/services/database/database_services/database_interface/categories_database.dart';
 import 'package:task_management_app/core/utils/functions/custom_typedef.dart';
 import 'package:task_management_app/features/tasks_management/data/models/category_model.dart';
+import 'package:task_management_app/features/tasks_management/data/models/task_model.dart';
 
 class CategoriesDatabaseFirestore implements CategoriesDatabase{
   CollectionReference<CategoryModel> getCategoriesCollection({required String uid}) {
@@ -13,7 +14,7 @@ class CategoriesDatabaseFirestore implements CategoriesDatabase{
   }
   @override
   Future<String?> addCategoryInDatabase({required String uid, required CategoryModel categoryModel})async {
-    var document =  getCategoriesCollection(uid: uid).doc();
+    var document = getCategoriesCollection(uid: uid).doc();
     categoryModel.categoryId = document.id;
     await document.set(categoryModel);
     return categoryModel.categoryId;
@@ -21,7 +22,6 @@ class CategoriesDatabaseFirestore implements CategoriesDatabase{
   @override
   Future<void> deleteCategoryFromDatabase({required String categoryId, required String uid}) async {
     await getCategoriesCollection(uid: uid).doc(categoryId).delete();
-
   }
 
   @override
@@ -47,6 +47,7 @@ class CategoriesDatabaseFirestore implements CategoriesDatabase{
         items.add(event.docs[i].data());
       }
       executeFunction(items);
-    },);
+    },
+    );
   }
 }

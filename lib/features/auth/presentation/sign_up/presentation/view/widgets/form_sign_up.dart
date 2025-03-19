@@ -20,7 +20,7 @@ class FormSignUp extends StatelessWidget {
             textInputAction: TextInputAction.next,
             functionValidate: (name) {
               BlocProvider.of<SignUpBloc>(context).userModel.name = name;
-              return ValidateInputsFromTextValid.validateNameValid(name);
+              return ValidateInputsFromTextValid.validateNameValid(input: name,outPut: "your first name");
             },
         ),
         const SizedBox(height: 8),

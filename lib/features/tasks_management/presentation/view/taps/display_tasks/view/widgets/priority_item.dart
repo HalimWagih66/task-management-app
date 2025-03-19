@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../../../../../material_application.dart';
 
 class PriorityItem extends StatelessWidget {
   const PriorityItem({super.key, required this.number, required this.color, required this.isSelected});
@@ -17,7 +18,7 @@ class PriorityItem extends StatelessWidget {
           radius: 22,
           child: CircleAvatar(
             backgroundColor: color,
-            child: Text("${number+1}",style:Theme.of(context).textTheme.displayMedium?.copyWith(color: Colors.black)),
+            child: Text("${number+1}",style: textThemeApp.font13PrimaryRegular),
           ),
         ),
       ),

@@ -8,11 +8,10 @@ class CustomCircleImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: primaryColorApp,
-      radius: firstRadios,
-      child: CircleAvatar(
-        radius: secondRadios,
-        backgroundColor: Colors.white,
+      radius: secondRadios,
+      backgroundColor: Colors.white,
+      child: AspectRatio(
+        aspectRatio: 1,
         child: child
       ),
     );

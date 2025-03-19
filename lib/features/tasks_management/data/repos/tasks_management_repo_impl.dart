@@ -134,23 +134,46 @@ class TasksManagementRepoImpl implements TasksManagementRepo{
   }
 
   @override
-  Either<Failure, List<TaskModel>> listenToTasksFromTheDatabase({required String categoryId, required String uid, required DateTime dateTime}) {
+  Future<Either<Failure, List<TaskModel>>> fetchTasksByStatus({required String categoryId, required int status, required String uid, required DateTime dateTime}) async {
     try {
-      List<TaskModel> tasks = databaseServices.tasksDatabase.listenToTasksFromTheDatabase(categoryId: categoryId, uid: uid, dateTime: dateTime);
+      List<TaskModel> tasks = await databaseServices.tasksDatabase.fetchTasksByStatus(categoryId: categoryId, status: status, uid: uid, dateTime: dateTime);
       return right(tasks);
     } on CustomException catch (e) {
       return left(ServerFailure(e.errorMessage));
     }catch (e){
       return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
     }
-
   }
 
   @override
-  Either<Failure, List<TaskModel>> listenToTasksFromTheDatabaseUsingFilter({required String categoryId, required int status, required String uid, required DateTime dateTime}) {
+  Future<Either<Failure, List<TaskModel>>> fetchTasksByDate({required String categoryId, required String uid, required DateTime dateTime}) async {
     try {
-      List<TaskModel> tasks = databaseServices.tasksDatabase.listenToTasksFromTheDatabaseUsingFilter(categoryId: categoryId, status: status, uid: uid, dateTime: dateTime);
+      List<TaskModel> tasks = await databaseServices.tasksDatabase.fetchTasksByDate(categoryId: categoryId, uid: uid, dateTime: dateTime);
       return right(tasks);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> trackInformationAboutTasks({required String categoryId, required String uid, required DateTime dateTime,required EventFunctionAsync eventFunctionTrackCompletedTasksToday,required EventFunctionAsync eventFunctionTrackTodayTaskCount}) async {
+    try {
+      await databaseServices.tasksDatabase.trackInformationAboutTasks(uid: uid,dateTime: dateTime,categoryId: categoryId,status: 2,eventFunctionTrackCompletedTasksToday: eventFunctionTrackCompletedTasksToday,eventFunctionTrackTodayTaskCount: eventFunctionTrackTodayTaskCount);
+      return right(null);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.errorMessage));
+    }catch (e){
+      return left(ServerFailure(Sentence.somethingWentWrongPleaseTryAgain));
+    }
+  }
+
+  @override
+  Future<Either<Failure, TaskModel?>> fetchASpecificTask({required String uid, required String taskId, required String categoryId}) async {
+    try {
+      TaskModel? taskModel = await databaseServices.tasksDatabase.fetchASpecificTask(taskId: taskId,uid: uid,categoryId: categoryId);
+     return right(taskModel);
     } on CustomException catch (e) {
       return left(ServerFailure(e.errorMessage));
     }catch (e){

@@ -3,18 +3,20 @@ sealed class ControlCategoriesState {}
 
 final class DisplayCategoriesInitial extends ControlCategoriesState {}
 
-final class DisplayCategoriesFailure extends ControlCategoriesState {
+final class CategoriesFailureState extends ControlCategoriesState {
   final String errorMessage;
-  DisplayCategoriesFailure({required this.errorMessage});
+  CategoriesFailureState({required this.errorMessage});
 }
 
-final class DisplayCategoriesSuccess extends ControlCategoriesState {}
+final class CategoriesSuccessState extends ControlCategoriesState {
+  CategoriesSuccessState();
+}
 
-final class DisplayCategoriesLoading extends ControlCategoriesState {}
+final class CategoriesLoadingState extends ControlCategoriesState {}
 
-final class DisplayCategoriesIsEmpty extends ControlCategoriesState {
+final class CategoriesIsEmptyState extends ControlCategoriesState {
   final String title;
-  DisplayCategoriesIsEmpty({required this.title});
+  CategoriesIsEmptyState({required this.title});
 }
 
 

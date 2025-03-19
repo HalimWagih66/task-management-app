@@ -1,18 +1,17 @@
 import 'dart:io';
-import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-import 'package:task_management_app/core/utils/constant/firebase/firebase_storage_constant.dart';
-import 'package:task_management_app/core/utils/constant/url_temporary.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../data/models/task_model.dart';
 import '../../../../../../data/repos/tasks_management_repo.dart';
-
 part 'control_tasks_state.dart';
 
 class ControlTasksCubit extends Cubit<ControlTasksState> {
   TasksManagementRepo tasksManagementRepo;
   File? pickImage;
+  DateTime dateTime = DateTime.now();
+  int status = -1;
+  List<TaskModel> tasks = [];
+
   List<Color> importance = const [
     Color(0xffff0000),
     Color(0xffff9900),
@@ -26,36 +25,43 @@ class ControlTasksCubit extends Cubit<ControlTasksState> {
     "In-Progress",
     "Done"
   ];
+
   ControlTasksCubit({required this.tasksManagementRepo}) : super(ControlTasksInitial());
-
-
   Future<void> addTaskInDatabase({required String uid,required TaskModel taskModel, required String categoryId})async{
     emit(AddTaskLoading());
     var result = await tasksManagementRepo.addTaskInDatabase(uid: uid, taskModel: taskModel, categoryId: categoryId);
     result.fold((failure) {
       emit(AddTaskFailure(errorMessage: failure.message));
     }, (taskID) async{
-      String? imageUrl = await uploadTaskImageForAdd(imageName: taskID!);
-      await editFieldsInTaskInDatabase(taskId: taskID, categoryId: categoryId, uid: uid, newData: {"imageUrl":imageUrl});
       emit(AddTaskSuccess());
     },);
   }
-  Future<String?>uploadTaskImageForAdd({required String imageName})async {
-    var result = await tasksManagementRepo.uploadImageOnDatabase(pathTheFile: FirebaseStorageConstant.getPathTheImage(email: FirebaseAuth.instance.currentUser!.email!, folderName: FirebaseStorageConstant.categories), file: pickImage!, fileName: imageName);
-    String? photoUrl;
-    result.fold((failure) {
-      emit(AddTaskFailure(errorMessage: failure.message));
-    }, (imageUrl){
-      photoUrl = imageUrl;
-    },);
-    return photoUrl;
+  Future<void>fetchTasks({required String uid, required String categoryId})async {
+    if(status == -1){
+      await fetchTasksByDate(uid: uid, categoryId: categoryId);
+    }else{
+      await fetchTasksByState(uid: uid, categoryId: categoryId, status: status);
+    }
   }
+  Future<void> changeStatus({required String uid, required String categoryId, required int status})async{
+    this.status = status;
+    await fetchTasksByState(uid: uid, categoryId: categoryId, status: status);
+  }
+
   Future<void> deleteTaskFromDatabase({required String uid, required String categoryId,required String taskID})async{
     var result = await tasksManagementRepo.deleteTaskFromDatabase(uid: uid, categoryId: categoryId, taskID: taskID);
     result.fold((failure) {
       emit(DeleteTaskFailure(errorMessage: failure.message));
-    }, (success) {
+    }, (success) async {
+      await fetchTasks(uid: uid,categoryId: categoryId);
       emit(DeleteTaskSuccess());
+    },);
+  }
+  Future<void> fetchASpecificTask({required String uid, required String categoryId,required String taskID})async{
+    var result = await tasksManagementRepo.fetchASpecificTask(categoryId: categoryId,uid: uid,taskId: taskID);
+    result.fold((failure) {
+    }, (task) async {
+      emit(UpdateTaskSuccess(taskModel: task));
     },);
   }
 
@@ -64,31 +70,35 @@ class ControlTasksCubit extends Cubit<ControlTasksState> {
     result.fold((failure) {
       emit(EditTaskFailure(errorMessage:failure.message));
     }, (success) {
-
+      emit(EditTaskSuccess());
     },);
   }
-
-  void listenToTasksFromTheDatabase({required String categoryId,required String uid, required DateTime dateTime}){
-    var result = tasksManagementRepo.listenToTasksFromTheDatabase(categoryId: categoryId, uid: uid, dateTime: dateTime);
-    result.fold((failure) {
-      emit(FetchTasksFailure(errorMessage: failure.message));
-    }, (tasks) {
-      tasks = List.generate(5, (index) => TaskModel(title: "title",time: "10:30",desc: "desc",priority: 1,taskId: "",status: 1,imageUrl: TemporaryUrls.displayImageCaseBaseImageIsNull,date: DateTime.now()));
-      if(tasks.isEmpty){
+  Future<void> fetchTasksByDate({required String uid, required String categoryId})async{
+    emit(FetchTasksLoading());
+    var res = await tasksManagementRepo.fetchTasksByDate(categoryId: categoryId, uid: uid, dateTime: dateTime);
+    res.fold((left) {
+      emit(FetchTasksFailure(errorMessage: left.message));
+    }, (items) {
+      tasks = items;
+      if(items.isEmpty){
         emit(FetchTasksIsEmpty());
-      }else {
+      }else{
         emit(FetchTasksSuccess(tasks: tasks));
       }
     },);
   }
-
-  void listenToTasksFromTheDatabaseUsingFilter({required String categoryId,required int status,required String uid, required DateTime dateTime}){
-    var result = tasksManagementRepo.listenToTasksFromTheDatabaseUsingFilter(categoryId: categoryId, status: status, uid: uid, dateTime: dateTime);
-    result.fold((failure) {
-      emit(FetchTasksFailure(errorMessage: failure.message));
-    }, (tasks) {
-      emit(FetchTasksSuccess(tasks: tasks));
+  Future<void> fetchTasksByState({required String uid, required String categoryId,required int status}) async {
+    emit(FetchTasksLoading());
+    var res = await tasksManagementRepo.fetchTasksByStatus(categoryId: categoryId, status: status, uid: uid, dateTime: dateTime);
+    res.fold((left) {
+      emit(FetchTasksFailure(errorMessage: left.message));
+    }, (items) {
+      tasks = items;
+      if(items.isEmpty){
+        emit(FetchTasksIsEmpty());
+      }else{
+        emit(FetchTasksSuccess());
+      }
     },);
   }
-
 }

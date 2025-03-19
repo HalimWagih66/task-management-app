@@ -2,7 +2,6 @@
 class TaskModel {
   String? title;
   String? desc;
-  String? imageUrl;
   int? priority;
   int? status;
   String? taskId;
@@ -13,7 +12,6 @@ class TaskModel {
   TaskModel({this.time,
     this.date,
     this.desc,
-    this.imageUrl,
     this.status,
     this.priority,
     this.taskId,
@@ -24,7 +22,6 @@ class TaskModel {
     desc = data?["desc"];
     taskId = data?["taskId"];
     status = data?["status"];
-    imageUrl = data?["imageUrl"];
     priority = data?["priority"];
     date = data?["date"]!=null?DateTime.fromMicrosecondsSinceEpoch(data?["date"]):null;
     time = data?["time"];
@@ -38,7 +35,11 @@ class TaskModel {
       "time": time,
       "taskId": taskId,
       "status":status,
-      "imageUrl": imageUrl
     };
+  }
+
+  @override
+  String toString() {
+    return 'TaskModel{title: $title, desc: $desc, priority: $priority, status: $status, taskId: $taskId, date: $date, time: $time}';
   }
 }

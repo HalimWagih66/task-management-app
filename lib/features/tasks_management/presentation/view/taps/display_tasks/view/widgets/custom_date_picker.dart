@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:date_picker_timeline/extra/style.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_management_app/core/utils/style/theme/constant_colors.dart';
+import 'package:task_management_app/features/home_layout/presentation/manager/user_model_cubit/user_model_cubit.dart';
+import 'package:task_management_app/features/tasks_management/presentation/cubits/cubits/tasks_management_layout_cubit.dart';
+import 'package:task_management_app/features/tasks_management/presentation/view/taps/display_tasks/cubits/control_tasks_cubit/control_tasks_cubit.dart';
 class CustomDatePicker extends StatelessWidget {
   const CustomDatePicker({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var controlTasksCubit = BlocProvider.of<ControlTasksCubit>(context);
     return DatePicker(
       DateTime.now().subtract(const Duration(days: 1)),
-      initialSelectedDate: DateTime.now(),
+      initialSelectedDate: controlTasksCubit.dateTime,
       directionality: TextDirection.ltr,
       //locale: Provider.of<SettingsProvider>(context,listen: false).selectedLanguage?? Localizations.localeOf(context).languageCode,
       selectionColor: primaryColorApp,
@@ -18,9 +23,13 @@ class CustomDatePicker extends StatelessWidget {
       monthTextStyle: defaultMonthTextStyle.copyWith(color: primaryColorApp),
       dayTextStyle: defaultDayTextStyle.copyWith(color: primaryColorApp),
       selectedTextColor: Colors.white,
-      onDateChange: (date) {
-        //Provider.of<TasksViewModel>(context,listen: false).dateTime = DateUtils.dateOnly(date);
-
+      onDateChange: (date) async{
+        BlocProvider.of<ControlTasksCubit>(context).dateTime = date;
+        if(controlTasksCubit.status == -1){
+          await BlocProvider.of<ControlTasksCubit>(context).fetchTasksByDate(uid: BlocProvider.of<UserModelCubit>(context).userModel!.id!, categoryId: BlocProvider.of<TasksManagementLayoutCubit>(context).categoryModel!.categoryId!);
+        }else{
+           await BlocProvider.of<ControlTasksCubit>(context).fetchTasksByState(status: controlTasksCubit.status,uid: BlocProvider.of<UserModelCubit>(context).userModel!.id!, categoryId: BlocProvider.of<TasksManagementLayoutCubit>(context).categoryModel!.categoryId!);
+        }
       },
     );
   }

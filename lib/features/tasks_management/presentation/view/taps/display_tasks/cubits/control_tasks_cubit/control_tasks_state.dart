@@ -30,8 +30,14 @@ final class FetchTasksFailure extends ControlTasksState {
 
 final class EditTaskLoading extends ControlTasksState {}
 
-final class EditTaskSuccess extends ControlTasksState {}
-
+final class EditTaskSuccess extends ControlTasksState {
+  final TaskModel? taskModel;
+  EditTaskSuccess({this.taskModel});
+}
+final class UpdateTaskSuccess extends ControlTasksState {
+  final TaskModel? taskModel;
+  UpdateTaskSuccess({this.taskModel});
+}
 final class EditTaskFailure extends ControlTasksState {
   final String errorMessage;
   EditTaskFailure({required this.errorMessage});
@@ -39,9 +45,10 @@ final class EditTaskFailure extends ControlTasksState {
 
 final class FetchTasksLoading extends ControlTasksState {}
 
+
 final class FetchTasksIsEmpty extends ControlTasksState {}
 
 final class FetchTasksSuccess extends ControlTasksState {
-  final List<TaskModel> tasks;
-  FetchTasksSuccess({required this.tasks});
+  final List<TaskModel>? tasks;
+  FetchTasksSuccess({this.tasks});
 }

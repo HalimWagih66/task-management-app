@@ -27,12 +27,9 @@ class ValidateInputsFromTextValid{
     }
     return null;
   }
-  static String? validateNameValid(String? input) {
+  static String? validateNameValid({String? input, required String outPut}) {
     if (input == null || input.trim().isEmpty == true) {
-      return "Please enter your name";
-    }
-    if (input.contains(" ") != true) {
-      return "Please enter at least a binary name";
+      return "Please enter $outPut";
     }
     return null;
   }

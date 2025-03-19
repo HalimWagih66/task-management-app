@@ -15,7 +15,12 @@ class DisplayCategoryNameAndNumberOfTasks extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(categoryName, style: textThemeApp.font18SecondPrimaryBold),
-            Text("$numberOfTasks", style: textThemeApp.font15greyRegular.copyWith(color: textThemeApp.secondPrimaryColor),
+            Row(
+              children: [
+                Text("Tasks : ", style: textThemeApp.font15greyRegular.copyWith(color: textThemeApp.secondPrimaryColor)),
+                Text("$numberOfTasks", style: textThemeApp.font15greyRegular.copyWith(color: textThemeApp.secondPrimaryColor),
+                ),
+              ],
             )
           ],
         ),
