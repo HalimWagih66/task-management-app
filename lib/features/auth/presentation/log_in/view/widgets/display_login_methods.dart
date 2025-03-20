@@ -7,7 +7,7 @@ import 'package:task_management_app/features/auth/presentation/log_in/manager/lo
 import 'package:task_management_app/core/utils/widgets/buttons/custom_elevated_button.dart';
 import 'package:task_management_app/features/home_layout/presentation/view/home_layout_view.dart';
 import '../../../../../../core/utils/widgets/dialogs/show_message_with_snack_bar.dart';
-import '../../../../../../material_application.dart';
+import '../../../../../../task_management_app.dart';
 import '../../../sign_up/presentation/view/widgets/display_sign_up_with_method.dart';
 
 class DisplayLoginMethods extends StatelessWidget {

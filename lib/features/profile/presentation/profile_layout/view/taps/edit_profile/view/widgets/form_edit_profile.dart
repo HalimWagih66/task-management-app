@@ -6,6 +6,7 @@ import '../../../../../../../../../core/models/user_model.dart';
 import '../../../../../../../../../core/utils/functions/validate/validate_inputs_from_text_valid.dart';
 import '../../../../../../../../../core/utils/widgets/TextFormField/custom_form_field.dart';
 import '../../manager/edit_profile_form/edit_profile_form_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FormEditProfile extends StatelessWidget {
   const FormEditProfile({
@@ -23,10 +24,10 @@ class FormEditProfile extends StatelessWidget {
         children: [
           CustomTextFormField(
             contentPadding: 10,
-            textLabel: "Name",
+            textLabel: AppLocalizations.of(context)!.name,
             initialValue: userModel?.name,
             functionValidate: (name) {
-               if(ValidateInputsFromTextValid.validateNameValid(input: name,outPut: "your first name") == null){
+               if(ValidateInputsFromTextValid.validateNameValid(input: name,outPut: AppLocalizations.of(context)!.call) == null){
                  if(name != userModel?.name){
                    BlocProvider.of<EditProfileFormCubit>(context).editFieldInUserInDatabase(newData: {"name":name}, uid: userModel!.id,editType: "name");
                  }
@@ -39,7 +40,7 @@ class FormEditProfile extends StatelessWidget {
           const SizedBox(height: 25),
           CustomTextFormField(
             contentPadding: 10,
-            textLabel: "Email",
+            textLabel: AppLocalizations.of(context)!.email,
             enabled: false,
             initialValue: userModel?.email,
             functionValidate: (email) {
@@ -49,7 +50,7 @@ class FormEditProfile extends StatelessWidget {
           const SizedBox(height: 25),
           CustomTextFormField(
             contentPadding: 10,
-            textLabel: "Password",
+            textLabel: AppLocalizations.of(context)!.password,
             initialValue: "******",
             obscureText: true,
             functionValidate: (password) {

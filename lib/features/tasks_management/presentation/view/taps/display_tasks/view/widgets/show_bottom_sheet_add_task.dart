@@ -10,8 +10,8 @@ import 'package:task_management_app/core/utils/style/theme/constant_colors.dart'
 import 'package:task_management_app/core/utils/widgets/TextFormField/custom_form_field.dart';
 import 'package:task_management_app/core/utils/widgets/dialogs/show_message_with_snack_bar.dart';
 import 'package:task_management_app/features/tasks_management/presentation/view/taps/display_tasks/view/widgets/priority_item.dart';
-import 'package:task_management_app/material_application.dart';
 import '../../../../../../../../core/utils/widgets/loading/custom_hexagon_Dots_loading.dart';
+import '../../../../../../../../task_management_app.dart';
 import '../../../../../../data/models/task_model.dart';
 import '../../cubits/control_tasks_cubit/control_tasks_cubit.dart';
 import 'build_under_line_input_border.dart';
@@ -101,8 +101,6 @@ class _ShowBottomSheetAddTaskState extends State<ShowBottomSheetAddTask> {
               ),
               Column(
                 children: [
-
-
                 SizedBox(
                 height: 50,
                 child: ListView.builder(
@@ -256,7 +254,7 @@ class _ShowBottomSheetAddTaskState extends State<ShowBottomSheetAddTask> {
                       if(state is AddTaskLoading){
                         return CustomHexagonDotsLoading(color: textThemeApp.secondPrimaryColor);
                       }
-                      return Text("Add Task", style: textThemeApp.font18SecondPrimaryBold,);
+                      return Text(AppLocalizations.of(context)!.add_task, style: textThemeApp.font18SecondPrimaryBold,);
                     },
                   ),
               )

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../material_application.dart';
+import '../../../../task_management_app.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key, this.leadingIconData, this.backgroundColor = Colors.transparent, required this.title, this.onPressed});
@@ -11,12 +11,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: textThemeApp.secondPrimaryColor,
       child: AppBar(
         elevation: 0,
-        surfaceTintColor: Colors.white,
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.white,
+        surfaceTintColor: textThemeApp.secondPrimaryColor,
+        foregroundColor: textThemeApp.secondPrimaryColor,
+        backgroundColor: textThemeApp.secondPrimaryColor,
         leading: leadingIconData == null?null:IconButton(icon: Icon(leadingIconData,color: textThemeApp.primaryColor,), onPressed: onPressed),
         title: Text(title,style: textThemeApp.font17PrimaryMedium),
       ),

@@ -9,6 +9,7 @@ import 'package:task_management_app/features/home_layout/presentation/manager/us
 import 'package:task_management_app/features/home_layout/presentation/view/home_layout_view.dart';
 import 'package:task_management_app/features/on_boarding/view/on_boarding_view.dart';
 import '../../features/auth/presentation/sign_up/presentation/view/sign_up_view.dart';
+import '../../features/settings/presentation/view/settings_view.dart';
 
 class AppRouter{
   static GoRouter appRouter = GoRouter(
@@ -27,7 +28,13 @@ class AppRouter{
           builder: (context, state) => const LoginView(),
         ),
         GoRoute(
+          path: SettingsView.routeName,
+          name: SettingsView.routeName,
+          builder: (context, state) =>  const SettingsView(),
+        ),
+        GoRoute(
           path: HomeLayoutView.routeName,
+          name: HomeLayoutView.routeName,
           builder: (context, state) => MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => HomeLayoutCubit()),

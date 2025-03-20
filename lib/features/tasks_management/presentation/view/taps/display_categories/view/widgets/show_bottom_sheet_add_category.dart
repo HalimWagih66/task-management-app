@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:task_management_app/core/utils/cubits/image_picker_cubit/image_picker_cubit.dart';
 import 'package:task_management_app/features/tasks_management/presentation/view/taps/display_categories/view/widgets/show_bottom_sheet_add_category_body.dart';
-import 'package:task_management_app/material_application.dart';
+import '../../../../../../../../task_management_app.dart';
 
 class ShowBottomSheetAddCategory extends StatelessWidget {
   const ShowBottomSheetAddCategory({super.key, required this.uid});

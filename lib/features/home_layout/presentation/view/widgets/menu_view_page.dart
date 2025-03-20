@@ -10,19 +10,15 @@ import 'package:task_management_app/features/auth/presentation/log_in/view/login
 import 'package:task_management_app/features/home_layout/data/home_layout_repo.dart';
 import '../../../../../core/utils/style/theme/constant_colors.dart';
 import '../../../../../core/utils/widgets/dialogs/custom_rating.dart';
-import '../../../../../material_application.dart';
+import '../../../../../task_management_app.dart';
+import '../../../../settings/presentation/view/settings_view.dart';
 import '../../manager/home_layout_cubit/home_layout_cubit.dart';
 import '../../manager/sign_out_cubit/sign_out_cubit.dart';
 import '../../manager/sign_out_cubit/sign_out_state.dart';
 import 'item_drawer.dart';
-class MenuViewPage extends StatefulWidget {
+class MenuViewPage extends StatelessWidget {
   const MenuViewPage({super.key});
 
-  @override
-  State<MenuViewPage> createState() => _MenuViewPageState();
-}
-
-class _MenuViewPageState extends State<MenuViewPage>{
   @override
   Widget build(BuildContext context) {
     var homeLayoutViewModel = Provider.of<HomeLayoutCubit>(context);
@@ -44,12 +40,11 @@ class _MenuViewPageState extends State<MenuViewPage>{
                ZoomDrawer.of(context)?.close();
              }),
              ItemDrawer(iconData: Icons.settings,text: AppLocalizations.of(context)!.settings,onTap: ()async{
-               homeLayoutViewModel.animateToPage(2);
-
+               GoRouter.of(context).pushReplacementNamed(SettingsView.routeName);
                ZoomDrawer.of(context)?.close();
              },),
             ItemDrawer(iconData: Icons.contact_support,text: AppLocalizations.of(context)!.support,onTap: () async {
-              homeLayoutViewModel.animateToPage(3);
+              homeLayoutViewModel.animateToPage(2);
               ZoomDrawer.of(context)?.close();
             }),
             ItemDrawer(iconData: Icons.star_border,text: AppLocalizations.of(context)!.rate_us,onTap: (){
@@ -85,6 +80,4 @@ class _MenuViewPageState extends State<MenuViewPage>{
       ),
     );
   }
-
-
 }

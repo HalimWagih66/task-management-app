@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task_management_app/material_application.dart';
+
+import '../../../../task_management_app.dart';
 
 class CustomDisplayItemsIsEmpty extends StatelessWidget {
   const CustomDisplayItemsIsEmpty({super.key, required this.title});

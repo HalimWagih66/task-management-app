@@ -3,7 +3,6 @@ import 'package:task_management_app/core/services/database/database_firebase/dat
 import 'package:task_management_app/core/services/database/database_services/database_interface/categories_database.dart';
 import 'package:task_management_app/core/utils/functions/custom_typedef.dart';
 import 'package:task_management_app/features/tasks_management/data/models/category_model.dart';
-import 'package:task_management_app/features/tasks_management/data/models/task_model.dart';
 
 class CategoriesDatabaseFirestore implements CategoriesDatabase{
   CollectionReference<CategoryModel> getCategoriesCollection({required String uid}) {

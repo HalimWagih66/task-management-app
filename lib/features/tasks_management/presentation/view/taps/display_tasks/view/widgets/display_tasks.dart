@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_management_app/features/home_layout/presentation/manager/user_model_cubit/user_model_cubit.dart';
 import 'package:task_management_app/features/tasks_management/presentation/view/taps/display_tasks/cubits/control_tasks_cubit/control_tasks_cubit.dart';
 import 'package:task_management_app/features/tasks_management/presentation/view/taps/display_tasks/view/widgets/show_bottom_sheet_add_task.dart';
+import '../../../../../../../../task_management_app.dart';
 import '../../../../../../data/models/task_model.dart';
 import '../../../display_categories/view/widgets/custom_floating_action_button.dart';
 import 'custom_date_picker.dart';
@@ -44,6 +45,7 @@ class DisplayTasks extends StatelessWidget {
     String userId = BlocProvider.of<UserModelCubit>(context).userModel!.id!;
      await showModalBottomSheet(
         context: context,
+        backgroundColor: textThemeApp.secondPrimaryColor,
         isScrollControlled: true,
         builder: (context) =>  Padding(
           padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),

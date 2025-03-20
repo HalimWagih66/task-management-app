@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:task_management_app/core/utils/widgets/display_images/custom_circle_image.dart';
 import 'package:task_management_app/core/utils/widgets/display_images/custom_circle_image_for_file_image.dart';
+import '../../../../task_management_app.dart';
 import '../../cubits/image_picker_cubit/image_picker_cubit.dart';
 import '../dialogs/show_dialog_upload_image.dart';
-import '../../../../material_application.dart';
 
 class CustomPickedImageForAddImage extends StatelessWidget {
   const CustomPickedImageForAddImage({super.key, required this.caseImagePickerSuccess});

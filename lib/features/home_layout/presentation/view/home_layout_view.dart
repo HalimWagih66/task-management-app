@@ -6,7 +6,8 @@ import 'package:task_management_app/core/utils/style/theme/constant_colors.dart'
 import 'package:task_management_app/core/utils/widgets/loading/custom_hexagon_Dots_loading.dart';
 import 'package:task_management_app/features/home_layout/presentation/view/widgets/home_view.dart';
 import 'package:task_management_app/features/home_layout/presentation/view/widgets/menu_view_page.dart';
-import 'package:task_management_app/material_application.dart';
+
+import '../../../../task_management_app.dart';
 import '../manager/user_model_cubit/user_model_cubit.dart';
 import '../manager/user_model_cubit/user_model_state.dart';
 

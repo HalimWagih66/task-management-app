@@ -6,7 +6,7 @@ import 'package:task_management_app/core/utils/widgets/display_images/custom_cac
 import 'package:task_management_app/core/utils/widgets/display_images/custom_circle_image.dart';
 import 'package:task_management_app/features/home_layout/presentation/manager/user_model_cubit/user_model_cubit.dart';
 import 'package:task_management_app/features/profile/presentation/profile_layout/view/taps/display_profile/view/widgets/custom_view_field.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../cubits/profile_layout_cubit.dart';
 
 class DisplayProfileView extends StatelessWidget {
@@ -17,7 +17,7 @@ class DisplayProfileView extends StatelessWidget {
     var userModel = BlocProvider.of<UserModelCubit>(context).userModel;
     return Column(
       children: [
-        const CustomAppBar(title: "Profile",backgroundColor: Colors.transparent,),
+        CustomAppBar(title: AppLocalizations.of(context)!.profile,backgroundColor: Colors.transparent,),
         InkWell(
           onTap: () {
             BlocProvider.of<ProfileLayoutCubit>(context).animateToPage(1);
@@ -36,9 +36,9 @@ class DisplayProfileView extends StatelessWidget {
         ),
         Column(
           children: [
-            CustomViewField(label: "Name", text: userModel.name ??""),
-            CustomViewField(label: "Email", text: userModel.email ??""),
-            const CustomViewField(label: "Password", text: "*******"),
+            CustomViewField(label: AppLocalizations.of(context)!.name, text: userModel.name ??""),
+            CustomViewField(label: AppLocalizations.of(context)!.email, text: userModel.email ??""),
+            CustomViewField(label: AppLocalizations.of(context)!.password, text: "*******"),
           ],
         ),
         const Spacer(),

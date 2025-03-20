@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task_management_app/material_application.dart';
+import '../../../../task_management_app.dart';
 
 class CustomCircleImageForFileImage extends StatelessWidget {
   const CustomCircleImageForFileImage({super.key, this.imageProvider});
