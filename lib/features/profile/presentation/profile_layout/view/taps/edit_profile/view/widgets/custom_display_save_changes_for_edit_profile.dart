@@ -1,10 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../../../../../core/utils/widgets/dialogs/show_message_with_snack_bar.dart';
 import '../../../../../../../../../core/utils/widgets/loading/custom_hexagon_Dots_loading.dart';
-import '../../../../../../../../../material_application.dart';
+import '../../../../../../../../../task_management_app.dart';
 import '../../manager/edit_profile_form/edit_profile_form_cubit.dart';
 
 class CustomDisplaySaveChangesForEditProfile extends StatelessWidget {
@@ -33,7 +34,7 @@ class CustomDisplaySaveChangesForEditProfile extends StatelessWidget {
           return CustomHexagonDotsLoading(
               color: textThemeApp.secondPrimaryColor);
         } else {
-          return Text("Save Changes",
+          return Text(AppLocalizations.of(context)!.save_changes,
               style: textThemeApp.font18SecondPrimaryBold);
         }
       },

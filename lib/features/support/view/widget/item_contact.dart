@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_management_app/material_application.dart';
+import '../../../../task_management_app.dart';
 
 class ItemContact extends StatelessWidget {
   const ItemContact({super.key, required this.title, required this.icon, required this.onTap});
@@ -22,7 +22,7 @@ class ItemContact extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ListTile(
               leading: Icon(icon,color: textThemeApp.primaryColor,),
-              title: Text(title,style: Theme.of(context).textTheme.bodySmall,),
+              title: Text(title,style: textThemeApp.font17PrimaryMedium),
             ),
           ),
           const Divider(

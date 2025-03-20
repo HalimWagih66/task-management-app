@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_management_app/core/utils/style/theme/constant_colors.dart';
 import 'package:task_management_app/core/utils/widgets/TextFormField/text_form_field_border.dart';
-import '../../../../material_application.dart';
+import 'package:task_management_app/task_management_app.dart';
 
 typedef FunctionValidate = String? Function(String?);
 class CustomTextFormField extends StatelessWidget {
@@ -60,7 +60,7 @@ class CustomTextFormField extends StatelessWidget {
           onChanged: functionOnChanged,
           initialValue: initialValue,
           minLines: minLines,
-          style: textThemeApp.font13PrimaryRegular,
+          style: textThemeApp.font15greyRegular.copyWith(color: textThemeApp.secondPrimaryColor),
           decoration: InputDecoration(
             errorStyle: const TextStyle(
               color: Colors.red,

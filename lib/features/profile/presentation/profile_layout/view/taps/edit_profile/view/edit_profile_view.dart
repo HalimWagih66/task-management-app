@@ -7,6 +7,7 @@ import 'package:task_management_app/features/profile/presentation/profile_layout
 import 'package:task_management_app/features/profile/presentation/profile_layout/view/taps/edit_profile/view/widgets/edit_profile_body.dart';
 import '../../../../../../../../core/utils/widgets/app_bar/custom_app_bar.dart';
 import '../../../../cubits/profile_layout_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
@@ -27,7 +28,7 @@ class _EditProfileViewState extends State<EditProfileView> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               CustomAppBar(
-                title: "Edit Profile",
+                title: AppLocalizations.of(context)!.profile,
                 backgroundColor: Colors.transparent,
                 leadingIconData: Icons.arrow_back_ios,
                 onPressed: () {

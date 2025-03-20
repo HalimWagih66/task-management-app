@@ -6,16 +6,14 @@ import 'package:task_management_app/features/tasks_management/presentation/view/
 import 'package:task_management_app/features/tasks_management/presentation/view/taps/display_tasks/view/widgets/show_bottom_sheet_edit_task.dart';
 import 'package:task_management_app/features/tasks_management/presentation/view/taps/display_tasks/view/widgets/task_item_body.dart';
 import '../../../../../../../../core/utils/widgets/dialogs/show_message_awesome_dialog.dart';
+import '../../../../../../../../task_management_app.dart';
 import '../../../../../../../home_layout/presentation/manager/user_model_cubit/user_model_cubit.dart';
 import '../../../../../../data/models/task_model.dart';
 import '../../../../../cubits/cubits/tasks_management_layout_cubit.dart';
 import '../../../display_categories/view/widgets/custom_slidabel.dart';
 
 class TaskItem extends StatelessWidget {
-  const TaskItem({
-    super.key,
-    required this.taskModel,
-  });
+  const TaskItem({super.key, required this.taskModel});
 
   final TaskModel taskModel;
 
@@ -54,7 +52,7 @@ class TaskItem extends StatelessWidget {
 
   Future<void>showBottomSheetForEditTask(BuildContext context,String categoryId) async {
     String uid = BlocProvider.of<UserModelCubit>(context).userModel!.id!;
-    await showModalBottomSheet(context: context,isScrollControlled: true, builder: (context) => Padding(
+    await showModalBottomSheet(backgroundColor: textThemeApp.secondPrimaryColor,context: context,isScrollControlled: true, builder: (context) => Padding(
       padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: ShowBottomSheetEditTask(categoryId: categoryId, userID: uid, taskModel: taskModel),
     ));

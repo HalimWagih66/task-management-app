@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:task_management_app/task_management_app.dart';
 
-import '../../../../../../../material_application.dart';
 
 class DisplayRegistrationBySocial extends StatelessWidget {
   const DisplayRegistrationBySocial({

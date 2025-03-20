@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_management_app/task_management_app.dart';
 
 import '../../../../../../../../core/utils/style/theme/constant_colors.dart';
 import '../../cubits/control_tasks_cubit/control_tasks_cubit.dart';
@@ -20,7 +21,7 @@ class DisplayStatusTask extends StatelessWidget {
             borderRadius: BorderRadius.circular(10)
         ),
         padding: const EdgeInsets.all(5),
-        child: Text(controlTasksCubit.statusTask[status])
+        child: Text(controlTasksCubit.statusTask[status],style: textThemeApp.font15greyRegular.copyWith(color: textThemeApp.secondPrimaryColor))
     );
   }
 }

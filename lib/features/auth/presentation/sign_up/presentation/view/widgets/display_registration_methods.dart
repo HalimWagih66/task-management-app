@@ -7,7 +7,7 @@ import 'package:task_management_app/core/utils/widgets/loading/custom_hexagon_Do
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/manager/sign_up_bloc/sign_up_bloc.dart';
 import 'package:task_management_app/features/auth/presentation/sign_up/presentation/view/widgets/display_sign_up_with_method.dart';
 import '../../../../../../../core/utils/widgets/buttons/custom_elevated_button.dart';
-import '../../../../../../../material_application.dart';
+import '../../../../../../../task_management_app.dart';
 
 class DisplayRegistrationMethods extends StatelessWidget {
   const DisplayRegistrationMethods({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_management_app/material_application.dart';
+import '../../../../../../../../task_management_app.dart';
 
 class DisplayCategoryNameAndNumberOfTasks extends StatelessWidget {
   const DisplayCategoryNameAndNumberOfTasks({super.key, required this.categoryName, required this.numberOfTasks});

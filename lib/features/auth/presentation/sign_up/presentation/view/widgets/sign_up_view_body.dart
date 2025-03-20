@@ -5,7 +5,7 @@ import 'package:task_management_app/features/auth/presentation/sign_up/presentat
 import '../../../../../../../core/utils/cubits/image_picker_cubit/image_picker_cubit.dart';
 import '../../../../../../../core/utils/widgets/display_images/custom_picked_image_for_add_image.dart';
 import '../../../../../../../core/utils/widgets/questions/user_question_about_registration.dart';
-import '../../../../../../../material_application.dart';
+import '../../../../../../../task_management_app.dart';
 import 'display_registration_methods.dart';
 import 'form_sign_up.dart';
 

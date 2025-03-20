@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:task_management_app/features/tasks_management/data/models/category_model.dart';
-import 'package:task_management_app/material_application.dart';
+import '../../../../../../../../task_management_app.dart';
 
 class DisplayPercentage extends StatelessWidget {
   const DisplayPercentage({super.key, required this.categoryModel});

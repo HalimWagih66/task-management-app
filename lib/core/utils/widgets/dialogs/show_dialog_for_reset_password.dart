@@ -8,7 +8,7 @@ import 'package:task_management_app/core/utils/widgets/dialogs/show_message_with
 import 'package:task_management_app/core/utils/widgets/loading/custom_hexagon_Dots_loading.dart';
 import 'package:task_management_app/features/auth/data/repos/auth_repo.dart';
 import '../../../../features/auth/presentation/log_in/manager/reset_password_bloc/reset_password_bloc.dart';
-import '../../../../material_application.dart';
+import '../../../../task_management_app.dart';
 import '../../functions/validate/validate_inputs_from_text_valid.dart';
 
 Future<void> showDialogForResetPassword(BuildContext context) {

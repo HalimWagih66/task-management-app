@@ -11,9 +11,7 @@ class HomeLayoutCubit extends Cubit<HomeLayoutState>{
   List<Widget> taps = [
     const ProfileLayoutView(),
     const TasksManagementLayoutView(),
-    Container(
-      color: Colors.grey,
-    ),
+    //const SettingsView(),
     const SupportView()
   ];
   HomeLayoutCubit():super(HomeLayoutInitial()){

@@ -81,8 +81,8 @@
   "i_am_going_to_play_sports_with_my_colleagues":"I'm going to play sports with my colleagues.",
   "select_language": "Select language",
   "select_theme": "Select theme",
-  "light": "light",
-  "dark": "dark",
+  "light_mode": "light_mode",
+  "dark_mode": "Dark Mode",
   "please_enter_your_email":"Please enter your email",
   "forget_password": "Forget Password?",
   "sign_up": "Sign Up",
@@ -90,10 +90,9 @@
   "continue_with_email": "Continue with email",
   "continue_with_gmail": "Continue with gmail",
   "sign_out": "Sign Out",
+  "display_categories": "Display Categories",
   "verify_your_number": "Verify Your Number",
   "to_receive_verification_code": "to receive verification code",
   "please_enter_your_mobile_number": "please Enter your mobile number",
   "enter_your_new_phone_number": "Enter your new phone number"
-
-
 }

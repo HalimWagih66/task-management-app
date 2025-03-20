@@ -19,7 +19,6 @@ class CustomSlidable extends StatelessWidget {
               }, icon: Icons.delete,
               backgroundColor: Colors.red,
               label: "Delete",
-              //backgroundColor: Colors.white,
             ),
             SlidableAction(
               onPressed: (BuildContext context) async {
@@ -27,9 +26,7 @@ class CustomSlidable extends StatelessWidget {
               },
               icon: Icons.edit,
               backgroundColor: Colors.blueAccent,
-              borderRadius: const BorderRadius.only(
-                  bottomRight: Radius.circular(10),
-                  topRight: Radius.circular(10)),
+              borderRadius: const BorderRadius.only(bottomRight: Radius.circular(10), topRight: Radius.circular(10)),
               label: "Edit",
               spacing: 0,
             ),

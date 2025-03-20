@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../material_application.dart';
+import '../../../../task_management_app.dart';
 
 class UserQuestionAboutRegistration extends StatelessWidget {
   const UserQuestionAboutRegistration({super.key,
