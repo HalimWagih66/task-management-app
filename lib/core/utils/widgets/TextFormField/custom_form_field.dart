@@ -60,7 +60,7 @@ class CustomTextFormField extends StatelessWidget {
           onChanged: functionOnChanged,
           initialValue: initialValue,
           minLines: minLines,
-          style: textThemeApp.font15greyRegular.copyWith(color: textThemeApp.secondPrimaryColor),
+          style: textThemeApp.font15greyRegular.copyWith(color: textThemeApp.primaryColor),
           decoration: InputDecoration(
             errorStyle: const TextStyle(
               color: Colors.red,

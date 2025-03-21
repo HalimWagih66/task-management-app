@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-
 import '../../../../provider/settings/settings_provider.dart';
-
 part 'switch_toggle_state.dart';
 
 class SwitchToggleCubit extends Cubit<SwitchToggleState> {
